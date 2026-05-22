@@ -1298,5 +1298,395 @@
     },
     "correct_answer": "b",
     "text_answer": "There is absolutely no spatial overlap between the predicted bounding box and the ground-truth box."
+  },
+  {
+    "question_id": 101,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "You apply a Conv2D layer with kernel_size=3, stride=1, padding=1 to an input feature map of size [B, 32, 64, 64]. Assuming no change in channel count, what will be the spatial size of the output feature map?",
+    "options": {
+      "a": "[B, 32, 64, 64]",
+      "b": "[B, 32, 62, 62]",
+      "c": "[B, 32, 32, 32]",
+      "d": "[B, 32, 66, 66]"
+    },
+    "correct_answer": "a",
+    "text_answer": "[B, 32, 64, 64]"
+  },
+  {
+    "question_id": 102,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "What is a common side effect of using very large dropout rates (e.g., p = 0.8) in a fully connected layer?",
+    "options": {
+      "a": "Training becomes impossible because gradients vanish to exactly zero.",
+      "b": "The model may underfit because too much information is randomly discarded at each step.",
+      "c": "The model's parameter count increases to compensate for the removed activations.",
+      "d": "Dropout starts to behave identically to Batch Normalization."
+    },
+    "correct_answer": "b",
+    "text_answer": "The model may underfit because too much information is randomly discarded at each step."
+  },
+  {
+    "question_id": 103,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "Which activation function outputs values that are always non-negative and has a derivative of either 0 or 1 depending on the sign of the input?",
+    "options": {
+      "a": "ReLU",
+      "b": "Sigmoid",
+      "c": "Tanh",
+      "d": "GELU"
+    },
+    "correct_answer": "a",
+    "text_answer": "ReLU"
+  },
+  {
+    "question_id": 104,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "Compared to standard ReLU, what is a primary advantage of the GELU activation in Transformer-based architectures?",
+    "options": {
+      "a": "It is piecewise linear, simplifying gradient computation.",
+      "b": "It provides smoother, probabilistic gating which can improve training stability in large models.",
+      "c": "It guarantees that no neuron ever becomes inactive.",
+      "d": "It completely eliminates the need for normalization layers."
+    },
+    "correct_answer": "b",
+    "text_answer": "It provides smoother, probabilistic gating which can improve training stability in large models."
+  },
+  {
+    "question_id": 105,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "A Linear layer in PyTorch is defined as torch.nn.Linear(256, 128). Ignoring bias, how many weights does this layer contain?",
+    "options": {
+      "a": "256",
+      "b": "128",
+      "c": "32,768",
+      "d": "384"
+    },
+    "correct_answer": "c",
+    "text_answer": "32,768"
+  },
+  {
+    "question_id": 106,
+    "topic": "CNN Architectures",
+    "question": "Which characteristic is typical of the AlexNet architecture but not of the original LeNet-5 design?",
+    "options": {
+      "a": "Training on grayscale images only.",
+      "b": "Use of very large 11x11 convolutional kernels in the first layer with high stride.",
+      "c": "Absence of any pooling layers.",
+      "d": "Use of only fully connected layers without convolutions."
+    },
+    "correct_answer": "b",
+    "text_answer": "Use of very large 11x11 convolutional kernels in the first layer with high stride."
+  },
+  {
+    "question_id": 107,
+    "topic": "CNN Architectures",
+    "question": "In ResNet, what does the term 'identity mapping' refer to inside a residual block?",
+    "options": {
+      "a": "The mapping from logits to probabilities via Softmax.",
+      "b": "A shortcut path that directly adds the block’s input to its output without additional transformations (or with minimal projection).",
+      "c": "A BatchNorm layer that sets gamma=1 and beta=0.",
+      "d": "A pooling layer that leaves the feature map unchanged."
+    },
+    "correct_answer": "b",
+    "text_answer": "A shortcut path that directly adds the block’s input to its output without additional transformations (or with minimal projection)."
+  },
+  {
+    "question_id": 108,
+    "topic": "CNN Architectures",
+    "question": "Which statement best describes the main difference between VGG-style networks and Inception-style networks?",
+    "options": {
+      "a": "VGG uses a single deep path with uniform 3x3 convolutions, while Inception uses multiple parallel paths with different kernel sizes.",
+      "b": "VGG replaces convolutions with attention, whereas Inception removes all pooling.",
+      "c": "VGG is fully convolutional while Inception is fully connected.",
+      "d": "Inception networks do not use ReLU activations."
+    },
+    "correct_answer": "a",
+    "text_answer": "VGG uses a single deep path with uniform 3x3 convolutions, while Inception uses multiple parallel paths with different kernel sizes."
+  },
+  {
+    "question_id": 109,
+    "topic": "CNN Architectures",
+    "question": "In MobileNet-like models, how does using depthwise separable convolutions primarily reduce computation compared to standard convolutions?",
+    "options": {
+      "a": "By eliminating the need for bias terms.",
+      "b": "By factorizing a full convolution into a cheap spatial filtering step and a separate 1x1 channel mixing step.",
+      "c": "By sharing the same kernel across all channels and positions.",
+      "d": "By substituting all convolutions with average pooling layers."
+    },
+    "correct_answer": "b",
+    "text_answer": "By factorizing a full convolution into a cheap spatial filtering step and a separate 1x1 channel mixing step."
+  },
+  {
+    "question_id": 110,
+    "topic": "CNN Architectures",
+    "question": "EfficientNet-B0 is scaled up to EfficientNet-B7 mainly by changing which combination of factors?",
+    "options": {
+      "a": "Only increasing the input image resolution.",
+      "b": "Only increasing the number of classes.",
+      "c": "Depth, width, and resolution together using fixed compound coefficients.",
+      "d": "Number of pooling layers and number of logits."
+    },
+    "correct_answer": "c",
+    "text_answer": "Depth, width, and resolution together using fixed compound coefficients."
+  },
+  {
+    "question_id": 111,
+    "topic": "Optimization",
+    "question": "When training with Adam, which hyperparameters specifically control the exponential moving averages of the gradients and their squares?",
+    "options": {
+      "a": "weight_decay and lr",
+      "b": "beta1 and beta2",
+      "c": "epsilon and momentum",
+      "d": "batch_size and gamma"
+    },
+    "correct_answer": "b",
+    "text_answer": "beta1 and beta2"
+  },
+  {
+    "question_id": 112,
+    "topic": "Optimization",
+    "question": "You notice that both training and validation losses fluctuate heavily and do not decrease smoothly. Which change is most likely to stabilize the optimization?",
+    "options": {
+      "a": "Increase the learning rate by a factor of 10.",
+      "b": "Decrease the batch size significantly.",
+      "c": "Reduce the learning rate or use a learning rate scheduler.",
+      "d": "Remove all normalization layers."
+    },
+    "correct_answer": "c",
+    "text_answer": "Reduce the learning rate or use a learning rate scheduler."
+  },
+  {
+    "question_id": 113,
+    "topic": "Optimization",
+    "question": "What is a typical symptom of exploding gradients when monitoring training logs?",
+    "options": {
+      "a": "Loss decreasing smoothly to near zero.",
+      "b": "Loss suddenly becoming NaN or extremely large, with model outputs blowing up.",
+      "c": "Validation loss slightly higher than training loss.",
+      "d": "Gradual overfitting after many epochs."
+    },
+    "correct_answer": "b",
+    "text_answer": "Loss suddenly becoming NaN or extremely large, with model outputs blowing up."
+  },
+  {
+    "question_id": 114,
+    "topic": "Optimization",
+    "question": "In mini-batch gradient descent, what is a practical reason to prefer smaller batches instead of using the entire dataset as one batch?",
+    "options": {
+      "a": "Full-batch gradient descent is guaranteed to diverge.",
+      "b": "Smaller batches introduce gradient noise that can help escape sharp local minima and improve generalization.",
+      "c": "Smaller batches completely eliminate I/O overhead.",
+      "d": "Hardware accelerators only support batch size of 1."
+    },
+    "correct_answer": "b",
+    "text_answer": "Smaller batches introduce gradient noise that can help escape sharp local minima and improve generalization."
+  },
+  {
+    "question_id": 115,
+    "topic": "Loss Functions",
+    "question": "Which loss function is most appropriate for training a network that regresses 2D keypoint coordinates for human pose estimation?",
+    "options": {
+      "a": "Categorical Cross-Entropy",
+      "b": "Binary Cross-Entropy",
+      "c": "Mean Squared Error",
+      "d": "Hinge Loss"
+    },
+    "correct_answer": "c",
+    "text_answer": "Mean Squared Error"
+  },
+  {
+    "question_id": 116,
+    "topic": "Loss Functions",
+    "question": "For multi-label classification with K independent labels per sample, which combination is usually correct?",
+    "options": {
+      "a": "Softmax activation with Categorical Cross-Entropy loss.",
+      "b": "Sigmoid activation with Binary Cross-Entropy loss applied per label.",
+      "c": "ReLU activation with Hinge loss.",
+      "d": "No activation with Mean Squared Error."
+    },
+    "correct_answer": "b",
+    "text_answer": "Sigmoid activation with Binary Cross-Entropy loss applied per label."
+  },
+  {
+    "question_id": 117,
+    "topic": "Evaluation Metrics",
+    "question": "In object detection, what does a high mAP value at IoU threshold 0.5 generally indicate?",
+    "options": {
+      "a": "The detector often predicts boxes that overlap ground truth objects by at least 50%.",
+      "b": "The detector never predicts background regions.",
+      "c": "The detector’s bounding boxes have zero area.",
+      "d": "The detector has perfect Recall but low Precision."
+    },
+    "correct_answer": "a",
+    "text_answer": "The detector often predicts boxes that overlap ground truth objects by at least 50%."
+  },
+  {
+    "question_id": 118,
+    "topic": "Evaluation Metrics",
+    "question": "Which scenario can cause a model to have high Accuracy but very low Recall for the positive class?",
+    "options": {
+      "a": "The dataset is perfectly balanced.",
+      "b": "The positive class is rare, and the model predicts almost everything as negative.",
+      "c": "The model predicts randomly with 50% probability.",
+      "d": "The model only predicts the positive class."
+    },
+    "correct_answer": "b",
+    "text_answer": "The positive class is rare, and the model predicts almost everything as negative."
+  },
+  {
+    "question_id": 119,
+    "topic": "Transformers",
+    "question": "In the Q, K, V formulation of self-attention, which matrices are directly used to compute the attention weights before Softmax?",
+    "options": {
+      "a": "Q and V",
+      "b": "K and V",
+      "c": "Q and K",
+      "d": "Only V"
+    },
+    "correct_answer": "c",
+    "text_answer": "Q and K"
+  },
+  {
+    "question_id": 120,
+    "topic": "Transformers",
+    "question": "What is the purpose of scaling by 1/sqrt(d_k) in the dot-product self-attention mechanism?",
+    "options": {
+      "a": "To increase numerical precision of large dot products.",
+      "b": "To prevent the dot products from growing too large in magnitude, which would push Softmax into saturated regions.",
+      "c": "To enforce sparsity in the attention matrix.",
+      "d": "To ensure attention weights sum to more than 1."
+    },
+    "correct_answer": "b",
+    "text_answer": "To prevent the dot products from growing too large in magnitude, which would push Softmax into saturated regions."
+  },
+  {
+    "question_id": 121,
+    "topic": "Transformers",
+    "question": "In a standard encoder-only Vision Transformer (ViT), which components are typically absent compared to the original encoder-decoder Transformer for machine translation?",
+    "options": {
+      "a": "Multi-Head Attention layers.",
+      "b": "Feed-Forward sublayers.",
+      "c": "Decoder blocks and cross-attention between encoder and decoder.",
+      "d": "Layer Normalization."
+    },
+    "correct_answer": "c",
+    "text_answer": "Decoder blocks and cross-attention between encoder and decoder."
+  },
+  {
+    "question_id": 122,
+    "topic": "Segmentation",
+    "question": "For semantic segmentation, which property must the ground-truth annotation satisfy at each pixel location?",
+    "options": {
+      "a": "Each pixel belongs to at most two classes simultaneously.",
+      "b": "Each pixel is assigned exactly one class label from the set of categories.",
+      "c": "Each pixel stores the bounding box coordinates.",
+      "d": "Each pixel stores a continuous depth value only."
+    },
+    "correct_answer": "b",
+    "text_answer": "Each pixel is assigned exactly one class label from the set of categories."
+  },
+  {
+    "question_id": 123,
+    "topic": "Segmentation",
+    "question": "Why are encoder-decoder architectures with skip connections (like U-Net) particularly effective for segmentation tasks?",
+    "options": {
+      "a": "They completely avoid downsampling to keep computation constant.",
+      "b": "They combine coarse semantic information from deep layers with fine spatial details from shallow layers.",
+      "c": "They eliminate the need for convolutions in the decoder.",
+      "d": "They require no labeled training data."
+    },
+    "correct_answer": "b",
+    "text_answer": "They combine coarse semantic information from deep layers with fine spatial details from shallow layers."
+  },
+  {
+    "question_id": 124,
+    "topic": "Object Detection",
+    "question": "In SSD-style detectors, how are default (prior) boxes typically distributed across feature maps?",
+    "options": {
+      "a": "Only on the highest-resolution feature map.",
+      "b": "Only on the lowest-resolution feature map.",
+      "c": "Across multiple feature maps at different resolutions to capture objects of various scales.",
+      "d": "They are sampled randomly at runtime."
+    },
+    "correct_answer": "c",
+    "text_answer": "Across multiple feature maps at different resolutions to capture objects of various scales."
+  },
+  {
+    "question_id": 125,
+    "topic": "Visualization",
+    "question": "Which statement about Grad-CAM heatmaps is correct?",
+    "options": {
+      "a": "They highlight which input pixels have the largest raw gradient values regardless of spatial resolution.",
+      "b": "They produce a coarse localization map over the last convolutional feature maps, which is then upsampled to the input image size.",
+      "c": "They directly visualize individual weight values of the final linear layer.",
+      "d": "They require replacing ReLU with Tanh in all layers."
+    },
+    "correct_answer": "b",
+    "text_answer": "They produce a coarse localization map over the last convolutional feature maps, which is then upsampled to the input image size."
+  },
+  {
+    "question_id": 126,
+    "topic": "Self-Supervised Learning (SSL)",
+    "question": "Which of the following is a typical pretext task for visual self-supervised learning?",
+    "options": {
+      "a": "Predicting the exact training epoch number for each image.",
+      "b": "Predicting the relative position of image patches or solving a jigsaw puzzle-like task.",
+      "c": "Predicting human-written captions perfectly.",
+      "d": "Maximizing pixel intensity values."
+    },
+    "correct_answer": "b",
+    "text_answer": "Predicting the relative position of image patches or solving a jigsaw puzzle-like task."
+  },
+  {
+    "question_id": 127,
+    "topic": "Self-Supervised Learning (SSL)",
+    "question": "In contrastive SSL, why is it important to sample 'hard negatives' in addition to easy negatives?",
+    "options": {
+      "a": "Hard negatives speed up data loading.",
+      "b": "Hard negatives provide more informative gradients because they are visually similar to positives but belong to different underlying images.",
+      "c": "Hard negatives increase the dimensionality of the embedding space.",
+      "d": "Hard negatives are required for computing IoU."
+    },
+    "correct_answer": "b",
+    "text_answer": "Hard negatives provide more informative gradients because they are visually similar to positives but belong to different underlying images."
+  },
+  {
+    "question_id": 128,
+    "topic": "Multimodal",
+    "question": "Which training objective is commonly used in CLIP-like multimodal models?",
+    "options": {
+      "a": "Reconstructing missing audio from video frames.",
+      "b": "Maximizing similarity between matched image-text pairs while minimizing it for mismatched pairs in a shared embedding space.",
+      "c": "Predicting the next video frame pixel-by-pixel.",
+      "d": "Solving a supervised segmentation loss over images."
+    },
+    "correct_answer": "b",
+    "text_answer": "Maximizing similarity between matched image-text pairs while minimizing it for mismatched pairs in a shared embedding space."
+  },
+  {
+    "question_id": 129,
+    "topic": "Code Questions & Tensor Manipulation",
+    "question": "Given a PyTorch tensor x with shape [8, 3, 32, 32], which operation correctly flattens the spatial and channel dimensions into a single feature vector per sample while keeping the batch dimension?",
+    "options": {
+      "a": "x.view(8, -1)",
+      "b": "x.view(-1, 3, 32, 32)",
+      "c": "x.squeeze(0)",
+      "d": "x.unsqueeze(-1)"
+    },
+    "correct_answer": "a",
+    "text_answer": "x.view(8, -1)"
+  },
+  {
+    "question_id": 130,
+    "topic": "Code Questions & Tensor Manipulation",
+    "question": "In NumPy, given an array a with shape (4, 1, 6) and another array b with shape (1, 5, 1), what is the shape of a + b under broadcasting rules?",
+    "options": {
+      "a": "(4, 5, 6)",
+      "b": "(4, 1, 6)",
+      "c": "(1, 5, 1)",
+      "d": "Broadcasting error due to incompatible shapes"
+    },
+    "correct_answer": "a",
+    "text_answer": "(4, 5, 6)"
   }
 ]
