@@ -26,6 +26,17 @@
             ]
         },
         {
+            "name": "Pooling (Max/Avg)",
+            "topic": "Basic Layers",
+            "bullets": [
+                "is a family of downsampling operations that aggregate values within local spatial windows (e.g., max or average)",
+                "contains no learnable parameters; its sole role is to reduce spatial dimensions H and W while keeping channels C",
+                "is often contrasted in exam questions with parameterized layers like Conv2D and Linear, which do have learnable weights",
+                "helps achieve translation invariance and reduces computational cost by shrinking feature maps",
+                "is commonly applied after one or more convolutions in CNN blocks"
+            ]
+        },
+        {
             "name": "Average Pooling",
             "topic": "Basic Layers",
             "bullets": [
@@ -43,12 +54,10 @@
             "bullets": [
                 "is a normalization layer that standardizes activations per mini-batch along specific dimensions",
                 "for C channels, learns 2 × C parameters in total: a scale γ_c and shift β_c for each channel c",
-                "computes batch statistics μ_c = (1/m) · Σ_i x_{i,c} and σ_c^2 = (1/m) · Σ_i (x_{i,c} − μ_c)^2, where m is the number of elements for that channel in the batch",
+                "computes batch statistics μ_c and σ_c^2 from the current mini-batch during training and uses running estimates at evaluation",
                 "normalizes activations as x̂_{i,c} = (x_{i,c} − μ_c) / √(σ_c^2 + ε) and then applies y_{i,c} = γ_c · x̂_{i,c} + β_c",
-                "reduces internal covariate shift by stabilizing the distribution of activations during training",
-                "often allows the use of higher learning rates and speeds up convergence",
-                "behaves differently in training and evaluation modes, using batch statistics during training and running estimates during evaluation",
-                "acts as a mild regularizer but is not a replacement for explicit regularization like dropout or weight decay"
+                "is often mentioned in contrast to pooling and dropout in exam questions because it DOES have learnable parameters",
+                "reduces internal covariate shift, speeds up convergence, and acts as a mild regularizer"
             ]
         },
         {
@@ -379,8 +388,9 @@
                 "are overlap-based losses designed for segmentation tasks with imbalanced foreground and background",
                 "measure similarity between predicted and ground-truth masks using set overlap rather than per-pixel averages",
                 "are more robust than plain cross-entropy when the positive class occupies a small fraction of the image",
+                "are commonly used losses for semantic segmentation alongside per-pixel Cross-Entropy, especially in medical imaging",
                 "can be combined with cross-entropy to balance region overlap and per-pixel classification quality",
-                "are commonly used in medical imaging and other domains with small structures"
+                "are widely used for both binary and multi-class segmentation by computing the loss per class then averaging"
             ]
         },
         {
@@ -444,6 +454,7 @@
                 "is a metric that quantifies the overlap between a predicted region (box or mask) and the ground-truth region",
                 "is computed as IoU = |A ∩ B| / |A ∪ B| where A and B are the predicted and ground-truth regions",
                 "ranges from 0 (no overlap) to 1 (perfect overlap)",
+                "is the standard metric used in many exam-style questions to describe the overlap between predicted and ground-truth masks",
                 "is used as a threshold criterion to decide if a predicted box is a True Positive in detection",
                 "is also used directly as a score for segmentation mask quality"
             ]
@@ -542,6 +553,7 @@
             "bullets": [
                 "is a model that applies the transformer encoder architecture directly to image patches",
                 "splits an image into fixed-size non-overlapping patches and flattens them into vectors",
+                "processes images explicitly as a sequence of patches rather than as feature maps convolved with kernels",
                 "projects each patch vector into an embedding space and adds positional encodings",
                 "prepends a special class token whose final representation is used for classification",
                 "relies on large-scale pretraining and data augmentation to achieve strong performance on vision tasks"
@@ -555,7 +567,8 @@
                 "does not distinguish between different instances of the same class, treating them as one category",
                 "produces dense label maps with the same spatial resolution as the input (or upsampled to it)",
                 "is used in applications like road scene understanding and medical imaging",
-                "is often modeled with fully convolutional networks and encoder-decoder architectures"
+                "is often modeled with fully convolutional networks and encoder-decoder architectures such as FCN, U-Net, and DeepLab",
+                "commonly uses per-pixel Cross-Entropy loss and overlap-based losses like Dice loss or IoU loss, sometimes in combination"
             ]
         },
         {
@@ -566,7 +579,8 @@
                 "separates different objects of the same class into distinct masks",
                 "combines aspects of detection (instances) and segmentation (pixel-level regions)",
                 "is more complex than semantic segmentation because it must handle object counting and separation",
-                "is commonly addressed by models like Mask R-CNN and related architectures"
+                "is commonly addressed by models like Mask R-CNN and related architectures",
+                "typically uses a combination of classification loss (e.g., cross-entropy), bounding box regression loss (e.g., Smooth L1), and mask-specific losses (e.g., binary cross-entropy or Dice loss on masks)"
             ]
         },
         {
@@ -577,7 +591,7 @@
                 "assigns every pixel a semantic label and, for instances, an associated instance ID",
                 "requires consistent handling of both amorphous regions like sky and countable objects like cars",
                 "provides a holistic scene understanding in a single output representation",
-                "is evaluated with specialized metrics that account for both semantic and instance quality"
+                "is evaluated with specialized metrics such as Panoptic Quality (PQ), which combines segmentation and detection quality"
             ]
         },
         {
@@ -712,6 +726,16 @@
                 "is widely used in both vision and language domains for pretraining encoders"
             ]
         },
+        {
+            "name": "Common Losses by Task Type",
+            "topic": "Loss Functions",
+            "bullets": [
+                "for semantic segmentation: commonly used losses include per-pixel Cross-Entropy, Dice loss, and IoU-based losses (often combined)",
+                "for object detection: typical loss components include classification loss (Cross-Entropy or Focal loss), bounding box regression loss (Smooth L1 or IoU loss), and sometimes objectness loss",
+                "for image classification: standard choices are Categorical Cross-Entropy with Softmax for multi-class and Binary Cross-Entropy with Sigmoid for binary or multi-label tasks",
+                "for regression tasks like keypoint prediction or depth estimation: common losses are Mean Squared Error (MSE) and Mean Absolute Error (MAE)"
+            ]
+        }
         {
             "name": "Contrastive Learning",
             "topic": "Self-Supervised Learning",
