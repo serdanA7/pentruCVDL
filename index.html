@@ -17,15 +17,7 @@
     <div class="orb orb-3"></div>
   </div>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="brand">
-        <span class="brand-icon">⚡</span>
-        <span class="brand-name">CVDL<span class="brand-accent">Moodle</span></span>
-      </div>
-      <div class="header-meta" id="item-count">Loading…</div>
-    </div>
-  </header>
+  <div id="item-count" hidden></div>
 
   <main class="main-content">
 
@@ -66,8 +58,16 @@
       <div class="search-stats" id="search-stats" aria-live="polite"></div>
     </section>
 
-    <!-- Topic filter pills -->
-    <section class="filters-section" id="filters-section" aria-label="Filter by topic"></section>
+    <!-- Topic filter pills (collapsible) -->
+    <div class="filters-wrapper" id="filters-wrapper">
+      <button class="filters-toggle" id="filters-toggle" aria-expanded="false" aria-controls="filters-section">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+        <span class="filters-toggle-label">Filter by topic</span>
+        <span class="filters-active-count" id="filters-active-count" hidden></span>
+        <svg class="filters-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <section class="filters-section" id="filters-section" aria-label="Filter by topic" hidden></section>
+    </div>
 
     <!-- ── QUESTIONS PANEL ── -->
     <div id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">

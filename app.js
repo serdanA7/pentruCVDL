@@ -17,7 +17,9 @@
   const panelTheory     = document.getElementById('panel-theory');
   const questionsEl     = document.getElementById('questions-container');
   const theoryEl        = document.getElementById('theory-container');
-  const filtersEl       = document.getElementById('filters-section');
+  const filtersEl          = document.getElementById('filters-section');
+  const filtersToggle       = document.getElementById('filters-toggle');
+  const filtersActiveCount  = document.getElementById('filters-active-count');
   const loadingQ        = document.getElementById('loading-questions');
   const emptyState      = document.getElementById('empty-state');
   const modalOverlay    = document.getElementById('modal-overlay');
@@ -61,6 +63,23 @@
   buildTopicPills();
   render();
 
+  /* ── Filters toggle ── */
+  filtersToggle.addEventListener('click', () => {
+    const isOpen = filtersToggle.getAttribute('aria-expanded') === 'true';
+    filtersToggle.setAttribute('aria-expanded', !isOpen);
+    filtersEl.hidden = isOpen;
+  });
+
+  function updateActiveCount() {
+    const n = activeTopics.size;
+    if (n > 0) {
+      filtersActiveCount.textContent = n;
+      filtersActiveCount.hidden = false;
+    } else {
+      filtersActiveCount.hidden = true;
+    }
+  }
+
   /* ── Tab switching ── */
   tabQBtn.addEventListener('click', () => switchMode('questions'));
   tabTBtn.addEventListener('click', () => switchMode('theory'));
@@ -77,8 +96,11 @@
     panelQuestions.hidden = mode !== 'questions';
     panelTheory.hidden    = mode !== 'theory';
 
-    // Rebuild pills for new mode
+    // Reset filter panel state
     filtersEl.innerHTML = '';
+    filtersEl.hidden = true;
+    filtersToggle.setAttribute('aria-expanded', 'false');
+    filtersActiveCount.hidden = true;
     buildTopicPills();
 
     // Reset search
@@ -110,6 +132,7 @@
     allPill.textContent = 'All topics';
     allPill.addEventListener('click', () => {
       activeTopics.clear();
+      updateActiveCount();
       document.querySelectorAll('.topic-pill').forEach(p => p.classList.remove('active'));
       allPill.classList.add('active');
       render();
@@ -130,6 +153,7 @@
           pill.classList.add('active');
         }
         allPill.classList.toggle('active', activeTopics.size === 0);
+        updateActiveCount();
         render();
       });
       filtersEl.appendChild(pill);
