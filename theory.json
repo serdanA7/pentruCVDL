@@ -77,7 +77,7 @@
             "topic": "Basic Layers",
             "bullets": [
                 "is a smooth activation function that maps real values into the range (0, 1)",
-                "has the form 1 / (1 + exp(-x)) and is often interpreted as a probability",
+                "has the form σ(x) = 1 / (1 + exp(-x))",
                 "is commonly used in the output layer of binary or multi-label classification tasks",
                 "can cause vanishing gradients when activations saturate near 0 or 1",
                 "is symmetric around 0.5, not around 0, which can slow down optimization in deep networks",
@@ -89,6 +89,7 @@
             "topic": "Basic Layers",
             "bullets": [
                 "is a smooth activation function that maps real values into the range (-1, 1)",
+                "has the form tanh(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))",
                 "is zero-centered, which can be advantageous compared to sigmoid in some optimization settings",
                 "still suffers from saturation and vanishing gradients for large positive or negative inputs",
                 "was widely used in older networks and RNNs before ReLU-style activations became dominant",
@@ -100,6 +101,7 @@
             "topic": "Basic Layers",
             "bullets": [
                 "is the Gaussian Error Linear Unit activation used in many transformer-based models",
+                "can be written approximately as GELU(x) ≈ 0.5 · x · (1 + tanh(√(2/π) · (x + 0.044715 · x^3)))",
                 "behaves like a smooth, probabilistic version of ReLU that weights inputs by their probability of being positive under a Gaussian",
                 "often improves performance and stability in very deep architectures compared to plain ReLU",
                 "is more computationally expensive than ReLU but is still practical with modern accelerators",
@@ -353,10 +355,19 @@
             "topic": "Loss Functions",
             "bullets": [
                 "is a loss function used for binary classification or independent multi-label classification tasks",
-                "is defined per output as -[y * log(y_hat) + (1 - y) * log(1 - y_hat)] where y_hat is a predicted probability",
+                "is defined per output as L = − [ y · log(ŷ) + (1 − y) · log(1 − ŷ) ] where ŷ is a predicted probability",
                 "is often applied with a Sigmoid activation for each output unit",
                 "treats each label as an independent binary decision in multi-label classification",
                 "can be adapted with positive or negative class weighting to handle imbalance"
+            ]
+        },
+        {
+            "name": "Binary Cross-Entropy in Questions Context",
+            "topic": "Loss Functions",
+            "bullets": [
+                "is the same loss used in your exam questions where the formula is written as − [y log(ŷ) + (1 − y) log(1 − ŷ)]",
+                "implements a per-pixel or per-label penalty in segmentation and multi-label classification settings",
+                "aligns exactly with the binary cross-entropy formulations appearing in your notebook and labs"
             ]
         },
         {
@@ -364,6 +375,7 @@
             "topic": "Loss Functions",
             "bullets": [
                 "is a regression loss that computes the average of squared differences between predictions and targets",
+                "is given by L = (1/N) · Σ_i (ŷ_i − y_i)^2 over N samples or elements",
                 "penalizes larger errors more heavily because the error term is squared",
                 "is sensitive to outliers since large deviations contribute disproportionately to the loss",
                 "is commonly used when predicting continuous quantities such as coordinates or intensities",
@@ -375,6 +387,7 @@
             "topic": "Loss Functions",
             "bullets": [
                 "is a regression loss that computes the average of absolute differences between predictions and targets",
+                "is given by L = (1/N) · Σ_i |ŷ_i − y_i| over N samples or elements",
                 "penalizes all errors linearly, making it more robust to outliers than MSE",
                 "has gradients that are constant in magnitude away from zero error",
                 "can lead to median-like behavior where the model predicts median values of the target distribution",
@@ -386,7 +399,7 @@
             "topic": "Loss Functions",
             "bullets": [
                 "is a margin-based loss commonly used with linear classifiers like SVMs",
-                "is defined as max(0, 1 - y * y_hat) where y is a label in {-1, 1} and y_hat is the raw score",
+                "is defined as L = max(0, 1 − y · ŷ) where y ∈ {−1, 1} and ŷ is the raw score",
                 "penalizes predictions that are on the wrong side of the decision boundary or too close to it",
                 "encourages a large margin between positive and negative examples",
                 "is less common in modern deep networks than cross-entropy but still useful in some margin-based setups"
@@ -418,7 +431,7 @@
             "topic": "Evaluation Metrics",
             "bullets": [
                 "is an evaluation metric that measures how many predicted positives are actually correct",
-                "is defined as True Positives divided by (True Positives + False Positives)",
+                "is defined as Precision = TP / (TP + FP)",
                 "is high when the model makes few false positive errors",
                 "is important in applications where false alarms are costly, such as medical diagnosis or detection of rare events",
                 "complements Recall by focusing on prediction quality among positive predictions"
@@ -429,7 +442,7 @@
             "topic": "Evaluation Metrics",
             "bullets": [
                 "is an evaluation metric that measures how many actual positives are successfully detected by the model",
-                "is defined as True Positives divided by (True Positives + False Negatives)",
+                "is defined as Recall = TP / (TP + FN)",
                 "is high when the model misses few true positive instances",
                 "is important in applications where missing a positive instance is very costly, such as safety-critical detection",
                 "often trades off with Precision depending on the chosen decision threshold"
@@ -440,7 +453,7 @@
             "topic": "Evaluation Metrics",
             "bullets": [
                 "is the harmonic mean of Precision and Recall",
-                "is defined as 2 * (Precision * Recall) / (Precision + Recall)",
+                "is defined as F1 = 2 · (P · R) / (P + R) where P is Precision and R is Recall",
                 "provides a single number that balances both false positives and false negatives",
                 "is especially useful on imbalanced datasets where Accuracy can be misleading",
                 "can be computed per class or as a macro/micro average across classes"
@@ -462,7 +475,7 @@
             "topic": "Evaluation Metrics for Detection/Segmentation",
             "bullets": [
                 "is a metric that quantifies the overlap between a predicted region (box or mask) and the ground-truth region",
-                "is computed as the area of intersection divided by the area of union between prediction and ground truth",
+                "is computed as IoU = |A ∩ B| / |A ∪ B| where A and B are the predicted and ground-truth regions",
                 "ranges from 0 (no overlap) to 1 (perfect overlap)",
                 "is used as a threshold criterion to decide if a predicted box is a True Positive in detection",
                 "is also used directly as a score for segmentation mask quality"
@@ -473,7 +486,7 @@
             "topic": "Evaluation Metrics for Detection",
             "bullets": [
                 "is a detection metric that summarizes the Precision-Recall curve for a single class",
-                "is computed as the area under the Precision-Recall curve, often after applying precision smoothing",
+                "is computed as the area under the Precision-Recall curve, often approximated by a sum over recall steps: AP = Σ_k (R_k − R_{k−1}) · P_envelope(k)",
                 "depends on a chosen IoU threshold that defines True Positives",
                 "is sensitive to both localization quality and ranking of detections by confidence",
                 "provides a more detailed view than a single Precision or Recall value at one threshold"
