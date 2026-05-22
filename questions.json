@@ -1,0 +1,1302 @@
+[
+  {
+    "question_id": 1,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "Given an input image of size 3x224x224 processed by torch.nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3), what is the spatial resolution of the output feature map?",
+    "options": {
+      "a": "112x112",
+      "b": "56x56",
+      "c": "224x224",
+      "d": "108x108"
+    },
+    "correct_answer": "a",
+    "text_answer": "112x112"
+  },
+  {
+    "question_id": 2,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "If a MaxPool2d layer with kernel_size=3, stride=2, and padding=1 is applied directly to a feature map of shape [4, 64, 112, 112], what is the resulting tensor shape?",
+    "options": {
+      "a": "[4, 64, 112, 112]",
+      "b": "[4, 64, 56, 56]",
+      "c": "[4, 32, 56, 56]",
+      "d": "[4, 64, 55, 55]"
+    },
+    "correct_answer": "b",
+    "text_answer": "[4, 64, 56, 56]"
+  },
+  {
+    "question_id": 3,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "Which of the following correctly describes the parameter counts of a standard Max Pooling layer?",
+    "options": {
+      "a": "It has learnable scaling parameters per channel.",
+      "b": "It has zero learnable parameters.",
+      "c": "Its parameters depend directly on the batch size.",
+      "d": "It contains one bias parameter per kernel window."
+    },
+    "correct_answer": "b",
+    "text_answer": "It has zero learnable parameters."
+  },
+  {
+    "question_id": 4,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "What parameters are learned by a standard Batch Normalization (BatchNorm) layer for a feature map with C channels?",
+    "options": {
+      "a": "Running mean and running variance vectors only.",
+      "b": "Gamma (scale) and beta (shift) vectors of size C.",
+      "c": "A weight matrix of shape [C, C].",
+      "d": "No parameters are learned, as normalization uses fixed statistics."
+    },
+    "correct_answer": "b",
+    "text_answer": "Gamma (scale) and beta (shift) vectors of size C."
+  },
+  {
+    "question_id": 5,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "How does a Dropout layer behave during the evaluation/testing phase (model.eval())?",
+    "options": {
+      "a": "It continues to zero out activations randomly with the same probability.",
+      "b": "It is completely deactivated and passes all activations unaltered.",
+      "c": "It zeroes out all activations to minimize prediction variance.",
+      "d": "It scales the downsampled activations by a factor of two."
+    },
+    "correct_answer": "b",
+    "text_answer": "It is completely deactivated and passes all activations unaltered."
+  },
+  {
+    "question_id": 6,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "Which of the following statements about the Softmax function is FALSE?",
+    "options": {
+      "a": "It maps elements into a range [0, 1] where they all sum to 1.",
+      "b": "It is used in the final layer of a multi-class single-label classification network.",
+      "c": "It preserves the relative monotonic order of the input elements.",
+      "d": "It is optimal for regression tasks involving continuous target coordinates."
+    },
+    "correct_answer": "d",
+    "text_answer": "It is optimal for regression tasks involving continuous target coordinates."
+  },
+  {
+    "question_id": 7,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "For a multi-label classification task where each input image can simultaneously contain multiple independent objects (e.g., both a dog and a cat), which activation function is appropriate for the final output layer?",
+    "options": {
+      "a": "Softmax",
+      "b": "Sigmoid",
+      "c": "ReLU",
+      "d": "Tanh"
+    },
+    "correct_answer": "b",
+    "text_answer": "Sigmoid"
+  },
+  {
+    "question_id": 8,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "Given a PyTorch tensor `t` with shape `[16, 256, 7, 7]`, which operation reshapes it to `[16, 256, 49]` without altering or copying the underlying data in memory?",
+    "options": {
+      "a": "t.permute(0, 1, 3, 2)",
+      "b": "t.view(16, 256, 49)",
+      "c": "t.unsqueeze(2)",
+      "d": "t.squeeze()"
+    },
+    "correct_answer": "b",
+    "text_answer": "t.view(16, 256, 49)"
+  },
+  {
+    "question_id": 9,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "What is the total number of learnable parameters for a fully connected (Linear) layer with 512 input features and 10 output features, including the bias term?",
+    "options": {
+      "a": "5120",
+      "b": "5130",
+      "c": "5220",
+      "d": "512"
+    },
+    "correct_answer": "b",
+    "text_answer": "5130"
+  },
+  {
+    "question_id": 10,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "Which of the following functions matches the formulation of the standard Leaky ReLU activation function?",
+    "options": {
+      "a": "max(0, x)",
+      "b": "max(alpha * x, x) where alpha is a small positive constant",
+      "c": "1 / (1 + exp(-x))",
+      "d": "x * tanh(softplus(x))"
+    },
+    "correct_answer": "b",
+    "text_answer": "max(alpha * x, x) where alpha is a small positive constant"
+  },
+  {
+    "question_id": 11,
+    "topic": "CNN Architectures",
+    "question": "What is the primary design philosophy of the VGG architecture compared to earlier models like AlexNet?",
+    "options": {
+      "a": "Using highly variable kernel sizes (11x11, 7x7, 5x5) to capture multiple scales.",
+      "b": "Using a homogeneous stack of small 3x3 convolutions to increase depth and non-linearity.",
+      "c": "Replacing all traditional convolutions with depthwise separable filters.",
+      "d": "Completely eliminating pooling layers to preserve spatial resolution."
+    },
+    "correct_answer": "b",
+    "text_answer": "Using a homogeneous stack of small 3x3 convolutions to increase depth and non-linearity."
+  },
+  {
+    "question_id": 12,
+    "topic": "CNN Architectures",
+    "question": "What is the main motivation behind using residual connections (skip connections) in architectures like ResNet?",
+    "options": {
+      "a": "To reduce the number of learnable parameters in deep blocks.",
+      "b": "To mitigate the vanishing gradient problem, enabling the training of much deeper networks.",
+      "c": "To completely avoid the use of non-linear activation functions.",
+      "d": "To force the network to discard high-frequency spatial noise."
+    },
+    "correct_answer": "b",
+    "text_answer": "To mitigate the vanishing gradient problem, enabling the training of much deeper networks."
+  },
+  {
+    "question_id": 13,
+    "topic": "CNN Architectures",
+    "question": "GoogLeNet/Inception modules heavily utilize 1x1 convolutions. What is their primary function in this context?",
+    "options": {
+      "a": "To increase spatial dimensions before performing max pooling.",
+      "b": "To act as a dimensional reduction step (decreasing channels) to save computational cost.",
+      "c": "To calculate the cross-attention matrix across token spatial patches.",
+      "d": "To replace the need for positional encodings."
+    },
+    "correct_answer": "b",
+    "text_answer": "To act as a dimensional reduction step (decreasing channels) to save computational cost."
+  },
+  {
+    "question_id": 14,
+    "topic": "CNN Architectures",
+    "question": "Which design principle characterizes the DenseNet architecture?",
+    "options": {
+      "a": "Each layer is connected directly to every subsequent layer within a block via channel concatenation.",
+      "b": "Layers are entirely isolated from each other to enforce independent feature learning.",
+      "c": "It scales depth, width, and resolution using a single unified compound scaling factor.",
+      "d": "It replaces all convolutional channels with self-attention heads."
+    },
+    "correct_answer": "a",
+    "text_answer": "Each layer is connected directly to every subsequent layer within a block via channel concatenation."
+  },
+  {
+    "question_id": 15,
+    "topic": "CNN Architectures",
+    "question": "MobileNet achieves extreme computational efficiency suitable for edge devices primarily by utilizing which mechanism?",
+    "options": {
+      "a": "Residual identity connections.",
+      "b": "Depthwise separable convolutions.",
+      "c": "Atrous/dilated convolutions.",
+      "d": "Global skip-connections with spatial upsampling."
+    },
+    "correct_answer": "b",
+    "text_answer": "Depthwise separable convolutions."
+  },
+  {
+    "question_id": 16,
+    "topic": "CNN Architectures",
+    "question": "What is the core strategy of EfficientNet architectures?",
+    "options": {
+      "a": "Scaling network depth exclusively while keeping width and resolution constant.",
+      "b": "Compound scaling that uniformly changes network depth, width, and image resolution simultaneously.",
+      "c": "Replacing all convolution operations with Vision Transformer patch embeddings.",
+      "d": "Using large kernel sizes at the end of the network to capture global features."
+    },
+    "correct_answer": "b",
+    "text_answer": "Compound scaling that uniformly changes network depth, width, and image resolution simultaneously."
+  },
+  {
+    "question_id": 17,
+    "topic": "CNN Architectures",
+    "question": "How do the spatial dimensions and channel counts typically evolve as an input passes deeper into a classic CNN?",
+    "options": {
+      "a": "Spatial dimensions increase, channel counts decrease.",
+      "b": "Spatial dimensions decrease, channel counts increase.",
+      "c": "Both spatial dimensions and channel counts increase.",
+      "d": "Both spatial dimensions and channel counts decrease."
+    },
+    "correct_answer": "b",
+    "text_answer": "Spatial dimensions decrease, channel counts increase."
+  },
+  {
+    "question_id": 18,
+    "topic": "CNN Architectures",
+    "question": "Which early architecture introduced the extensive use of ReLU activations, Dropout regularizers, and massive GPU training to win the ImageNet competition?",
+    "options": {
+      "a": "LeNet",
+      "b": "AlexNet",
+      "c": "VGG",
+      "d": "ResNet"
+    },
+    "correct_answer": "b",
+    "text_answer": "AlexNet"
+  },
+  {
+    "question_id": 19,
+    "topic": "CNN Architectures",
+    "question": "What is the defining structural property of an Inception module?",
+    "options": {
+      "a": "A strictly linear sequence of operations utilizing 11x11 kernels.",
+      "b": "Parallel multi-scale convolutional paths whose outputs are concatenated along the channel dimension.",
+      "c": "The complete replacement of convolutions with fully connected layers.",
+      "d": "A recursive block structure that processes images sequentially like an RNN."
+    },
+    "correct_answer": "b",
+    "text_answer": "Parallel multi-scale convolutional paths whose outputs are concatenated along the channel dimension."
+  },
+  {
+    "question_id": 20,
+    "topic": "CNN Architectures",
+    "question": "A depthwise separable convolution consists of two distinct stages. What are they?",
+    "options": {
+      "a": "A spatial max pool followed by a linear projection layer.",
+      "b": "A depthwise convolution (one filter per input channel) followed by a pointwise convolution (1x1 convolution).",
+      "c": "An atrous convolution followed by a transpose upsampling step.",
+      "d": "A horizontal flip transformation followed by a normalization pass."
+    },
+    "correct_answer": "b",
+    "text_answer": "A depthwise convolution (one filter per input channel) followed by a pointwise convolution (1x1 convolution)."
+  },
+  {
+    "question_id": 21,
+    "topic": "Optimization",
+    "question": "During training, you notice that your training loss decreases consistently toward zero, but your validation loss hits a minimum and then begins to steadily rise. What is occurring?",
+    "options": {
+      "a": "The model is underfitting.",
+      "b": "The model is overfitting.",
+      "c": "Gradients are vanishing completely.",
+      "d": "The learning rate is too small."
+    },
+    "correct_answer": "b",
+    "text_answer": "The model is overfitting."
+  },
+  {
+    "question_id": 22,
+    "topic": "Optimization",
+    "question": "Which of the following is an effective technique to address the problem of overfitting?",
+    "options": {
+      "a": "Removing all dropout layers from the model.",
+      "b": "Increasing the model complexity by adding unregularized layers.",
+      "c": "Applying data augmentation and regularization techniques like weight decay.",
+      "d": "Stopping training early when training loss is at its absolute lowest point."
+    },
+    "correct_answer": "c",
+    "text_answer": "Applying data augmentation and regularization techniques like weight decay."
+  },
+  {
+    "question_id": 23,
+    "topic": "Optimization",
+    "question": "What is the main conceptual distinction between the Adam optimizer and standard Stochastic Gradient Descent (SGD) with Momentum?",
+    "options": {
+      "a": "SGD with Momentum uses adaptive learning rates for each parameter, while Adam uses a single uniform learning rate.",
+      "b": "Adam computes adaptive learning rates per parameter by tracking moving averages of both the gradients and squared gradients.",
+      "c": "Adam completely eliminates the need to calculate backward gradients.",
+      "d": "SGD with Momentum is used only for Transformers, while Adam is used only for CNNs."
+    },
+    "correct_answer": "b",
+    "text_answer": "Adam computes adaptive learning rates per parameter by tracking moving averages of both the gradients and squared gradients."
+  },
+  {
+    "question_id": 24,
+    "topic": "Optimization",
+    "question": "What is the purpose of Gradient Clipping during the training of deep learning architectures?",
+    "options": {
+      "a": "To accelerate the network forward pass by cutting out weak activation maps.",
+      "b": "To prevent gradients from growing too large (exploding gradients) and causing training instability.",
+      "c": "To drop parameters that have zero impact on the final classification scores.",
+      "d": "To force the learning rate to decay following a step function."
+    },
+    "correct_answer": "b",
+    "text_answer": "To prevent gradients from growing too large (exploding gradients) and causing training instability."
+  },
+  {
+    "question_id": 25,
+    "topic": "Optimization",
+    "question": "How does a larger batch size typically influence the gradient descent update steps?",
+    "options": {
+      "a": "It creates highly noisy gradient estimates, enhancing overall generalization.",
+      "b": "It results in a more stable and accurate gradient estimate but may lead to a model that generalizes less effectively.",
+      "c": "It forces the model parameters to remain constant throughout training.",
+      "d": "It automatically scales up the network spatial dimension size."
+    },
+    "correct_answer": "b",
+    "text_answer": "It results in a more stable and accurate gradient estimate but may lead to a model that generalizes less effectively."
+  },
+  {
+    "question_id": 26,
+    "topic": "Optimization",
+    "question": "Which learning rate scheduling technique gradually reduces the learning rate following a smooth harmonic curve after an initial warmup phase?",
+    "options": {
+      "a": "Step Decay Schedule",
+      "b": "Cosine Annealing",
+      "c": "Constant Rate Schedule",
+      "d": "Gradient Expansion Routing"
+    },
+    "correct_answer": "b",
+    "text_answer": "Cosine Annealing"
+  },
+  {
+    "question_id": 27,
+    "topic": "Optimization",
+    "question": "What is a learning rate 'warm-up' phase?",
+    "options": {
+      "a": "Starting with a very high learning rate and dropping it immediately within the first batch.",
+      "b": "Starting with a low learning rate and gradually increasing it to the baseline rate over the first few epochs to stabilize early training.",
+      "c": "Antrenarea modelului pe imagini alb-negru înainte de trecerea la imagini color.",
+      "d": "Keeping the weights completely frozen while computing validation metrics."
+    },
+    "correct_answer": "b",
+    "text_answer": "Starting with a low learning rate and gradually increasing it to the baseline rate over the first few epochs to stabilize early training."
+  },
+  {
+    "question_id": 28,
+    "topic": "Optimization",
+    "question": "Weight decay acts as a regularizer during model optimization. What mathematical operation does it correspond to in vanilla SGD updates?",
+    "options": {
+      "a": "Adding a value proportional to the absolute magnitude of the weight to the current activation.",
+      "b": "Subtracting a small fraction of the weight itself at each iteration (L2 regularization).",
+      "c": "Multiplying gradients by infinity when they drop below a threshold.",
+      "d": "Randomly setting 50% of the weights to zero at each forward pass."
+    },
+    "correct_answer": "b",
+    "text_answer": "Subtracting a small fraction of the weight itself at each iteration (L2 regularization)."
+  },
+  {
+    "question_id": 29,
+    "topic": "Optimization",
+    "question": "What problem is caused by an excessively high learning rate?",
+    "options": {
+      "a": "The model will slowly and stably converge to a flat minimum over thousands of epochs.",
+      "b": "The optimization will diverge completely, causing weights to fluctuate wildly or produce NaN values.",
+      "c": "The training loss will freeze and remain exactly identical from the first step.",
+      "d": "The model will instantly overfit to the validation dataset."
+    },
+    "correct_answer": "b",
+    "text_answer": "The optimization will diverge completely, causing weights to fluctuate wildly or produce NaN values."
+  },
+  {
+    "question_id": 30,
+    "topic": "Optimization",
+    "question": "What is the primary indicator of underfitting during model development?",
+    "options": {
+      "a": "Training loss is extremely high, and the model fails to capture the underlying patterns of the training data.",
+      "b": "Training loss is zero, but validation loss is at its maximum.",
+      "c": "The test metrics match the training metrics exactly at 99% accuracy.",
+      "d": "The model runs out of VRAM memory during the first optimization step."
+    },
+    "correct_answer": "a",
+    "text_answer": "Training loss is extremely high, and the model fails to capture the underlying patterns of the training data."
+  },
+  {
+    "question_id": 31,
+    "topic": "Loss Functions",
+    "question": "Which loss function formulation is structurally defined as: L = max(0, 1 - y * y_hat)?",
+    "options": {
+      "a": "Cross-Entropy Loss",
+      "b": "Mean Squared Error Loss",
+      "c": "Hinge Loss",
+      "d": "Dice Loss"
+    },
+    "correct_answer": "c",
+    "text_answer": "Hinge Loss"
+  },
+  {
+    "question_id": 32,
+    "topic": "Loss Functions",
+    "question": "In what scenario is Categorical Cross-Entropy appropriate as the main optimization objective?",
+    "options": {
+      "a": "Predicting the continuous pixel locations of bounding boxes.",
+      "b": "Multi-class classification where each sample belongs to exactly one mutual exclusive category.",
+      "c": "Estimating pixel depth values for 3D reconstruction pipelines.",
+      "d": "Unsupervised cluster extraction without ground-truth distributions."
+    },
+    "correct_answer": "b",
+    "text_answer": "Multi-class classification where each sample belongs to exactly one mutual exclusive category."
+  },
+  {
+    "question_id": 33,
+    "topic": "Loss Functions",
+    "question": "How does Mean Squared Error (MSE) handle prediction errors compared to Mean Absolute Error (MAE/L1)?",
+    "options": {
+      "a": "MSE penalizes all errors linearly regardless of distance.",
+      "b": "MSE squares the errors, thereby penalizing large errors heavily and remaining highly sensitive to outliers.",
+      "c": "MSE ignores errors that are larger than a certain fixed threshold.",
+      "d": "MSE converts continuous targets into categorical probability distributions."
+    },
+    "correct_answer": "b",
+    "text_answer": "MSE squares the errors, thereby penalizing large errors heavily and remaining highly sensitive to outliers."
+  },
+  {
+    "question_id": 34,
+    "topic": "Loss Functions",
+    "question": "For binary classification tasks, what is the standard formulation of Cross-Entropy?",
+    "options": {
+      "a": "- [y * log(y_hat) + (1 - y) * log(1 - y_hat)]",
+      "b": "(y - y_hat)^2",
+      "c": "max(0, 1 - y * y_hat)",
+      "d": "1 - (2 * y * y_hat) / (y + y_hat)"
+    },
+    "correct_answer": "a",
+    "text_answer": "- [y * log(y_hat) + (1 - y) * log(1 - y_hat)]"
+  },
+  {
+    "question_id": 35,
+    "topic": "Loss Functions",
+    "question": "Why is the classic Cross-Entropy loss heavily affected when applied to highly imbalanced segmentation datasets (e.g., small targets occupying <1% of pixels)?",
+    "options": {
+      "a": "It cannot handle multi-channel feature tensor distributions.",
+      "b": "It computes a simple per-pixel average, which allows the dominant background class to overwhelm the gradient, biasing predictions toward the background.",
+      "c": "It forces the spatial resolution of the masks to downsample automatically.",
+      "d": "It requires that all input pixels sum exactly to 0."
+    },
+    "correct_answer": "b",
+    "text_answer": "It computes a simple per-pixel average, which allows the dominant background class to overwhelm the gradient, biasing predictions toward the background."
+  },
+  {
+    "question_id": 36,
+    "topic": "Evaluation Metrics",
+    "question": "Which of the following metrics answers the question: 'Of all the positive predictions made by the model, how many were actually correct?'",
+    "options": {
+      "a": "Recall",
+      "b": "Precision",
+      "c": "Intersection over Union",
+      "d": "Mean Absolute Error"
+    },
+    "correct_answer": "b",
+    "text_answer": "Precision"
+  },
+  {
+    "question_id": 37,
+    "topic": "Evaluation Metrics",
+    "question": "Which metric answers the question: 'Of all actual positive instances present in the dataset, how many did the model successfully find?'",
+    "options": {
+      "a": "Precision",
+      "b": "Recall",
+      "c": "F1-Score",
+      "d": "Accuracy"
+    },
+    "correct_answer": "b",
+    "text_answer": "Recall"
+  },
+  {
+    "question_id": 38,
+    "topic": "Evaluation Metrics",
+    "question": "The F1-Score is mathematically defined as which type of mean balancing Precision and Recall?",
+    "options": {
+      "a": "Arithmetic Mean",
+      "b": "Geometric Mean",
+      "c": "Harmonic Mean",
+      "d": "Quadratic Mean"
+    },
+    "correct_answer": "c",
+    "text_answer": "Harmonic Mean"
+  },
+  {
+    "question_id": 39,
+    "topic": "Evaluation Metrics",
+    "question": "What is the standard evaluation metric used to score performance across object detection datasets (like COCO or PASCAL VOC)?",
+    "options": {
+      "a": "Mean Square Error",
+      "b": "Dice Coefficient",
+      "c": "mAP (mean Average Precision)",
+      "d": "Categorical Cross-Entropy"
+    },
+    "correct_answer": "c",
+    "text_answer": "mAP (mean Average Precision)"
+  },
+  {
+    "question_id": 40,
+    "topic": "Evaluation Metrics",
+    "question": "The Intersection over Union (IoU) metric measures the ratio between which two areas?",
+    "options": {
+      "a": "The true positive area divided by the false negative parameters.",
+      "b": "The area of overlap between the predicted mask/box and ground truth divided by the total area of their union.",
+      "c": "The spatial width divided by the kernel stride step size.",
+      "d": "The total background pixel count divided by the object pixel count."
+    },
+    "correct_answer": "b",
+    "text_answer": "The area of overlap between the predicted mask/box and ground truth divided by the total area of their union."
+  },
+  {
+    "question_id": 41,
+    "topic": "Transformers",
+    "question": "What is the core mathematical operation of the Self-Attention mechanism in a Transformer?",
+    "options": {
+      "a": "A spatial pooling step across local receptive windows.",
+      "b": "Computing an attention matrix where each token interacts with all other tokens to capture global context.",
+      "c": "A recursive sliding dot-product that operates strictly token-by-token sequentially.",
+      "d": "A deep stack of depthwise separable 1x1 convolutions."
+    },
+    "correct_answer": "b",
+    "text_answer": "Computing an attention matrix where each token interacts with all other tokens to capture global context."
+  },
+  {
+    "question_id": 42,
+    "topic": "Transformers",
+    "question": "Why do Transformer architectures require Positional Encodings added to their input token embeddings?",
+    "options": {
+      "a": "To ensure the vectors are non-zero before passing through layer normalization.",
+      "b": "Because the self-attention operation is permutation-invariant and lacks any inherent awareness of token order.",
+      "c": "To decrease the channel dimensionality of the embeddings.",
+      "d": "To force the attention matrix to become strictly diagonal."
+    },
+    "correct_answer": "b",
+    "text_answer": "Because the self-attention operation is permutation-invariant and lacks any inherent awareness of token order."
+  },
+  {
+    "question_id": 43,
+    "topic": "Transformers",
+    "question": "What is the operational purpose of Multi-Head Attention compared to Single-Head Self-Attention?",
+    "options": {
+      "a": "It processes multiple separate batches of images in parallel to increase speed.",
+      "b": "It runs multiple attention operations in parallel, allowing the model to jointly attend to information from different representation subspaces.",
+      "c": "It forces the tokens to be downscaled across spatial patches.",
+      "d": "It handles the alignment between text and images during classification passes."
+    },
+    "correct_answer": "b",
+    "text_answer": "It runs multiple attention operations in parallel, allowing the model to jointly attend to information from different representation subspaces."
+  },
+  {
+    "question_id": 44,
+    "topic": "Transformers",
+    "question": "In a Vision Transformer (ViT), how is a 2D image structural layout prepared as an input sequence for the transformer blocks?",
+    "options": {
+      "a": "The image is downsampled to a 1x1 size using global average pooling.",
+      "b": "The image is split into fixed-size non-overlapping patches, which are flattened and linearly projected into sequence tokens.",
+      "c": "The image passes through a pre-trained VGG model to extract linear templates.",
+      "d": "Every single pixel is fed directly as a standalone token vector sequence."
+    },
+    "correct_answer": "b",
+    "text_answer": "The image is split into fixed-size non-overlapping patches, which are flattened and linearly projected into sequence tokens."
+  },
+  {
+    "question_id": 45,
+    "topic": "Transformers",
+    "question": "Which design configuration represents a typical 'Decoder' model vs an 'Encoder' model in the Transformer paradigm?",
+    "options": {
+      "a": "Encoders use causal masking to generate data, while Decoders use global context for classification.",
+      "b": "Encoders (like BERT) allow bidirectional attention for understanding, while Decoders (like GPT) use causal masking for sequence generation.",
+      "c": "Encoders only handle images, while Decoders handle text elements.",
+      "d": "There is no difference; they share identical attention masks."
+    },
+    "correct_answer": "b",
+    "text_answer": "Encoders (like BERT) allow bidirectional attention for understanding, while Decoders (like GPT) use causal masking for sequence generation."
+  },
+  {
+    "question_id": 46,
+    "topic": "Segmentation",
+    "question": "What is the main objective of Semantic Segmentation?",
+    "options": {
+      "a": "Predicting a single global label classification for an entire input frame.",
+      "b": "Labeling every single pixel in an image with a class category without distinguishing between distinct individual object instances.",
+      "c": "Extracting bounding box coordinates around foreground objects.",
+      "d": "Generating an entirely new image using a text-to-image prompt condition."
+    },
+    "correct_answer": "b",
+    "text_answer": "Labeling every single pixel in an image with a class category without distinguishing between distinct individual object instances."
+  },
+  {
+    "question_id": 47,
+    "topic": "Segmentation",
+    "question": "How does Instance Segmentation differ from Semantic Segmentation?",
+    "options": {
+      "a": "Instance segmentation only operates on black-and-white mask representations.",
+      "b": "Instance segmentation detects and separates individual object instances of the same class, assigning unique identity values to each.",
+      "c": "Instance segmentation does not require pixel-level training targets.",
+      "d": "Semantic segmentation is more computationally expensive because it uses bounding boxes."
+    },
+    "correct_answer": "b",
+    "text_answer": "Instance segmentation detects and separates individual object instances of the same class, assigning unique identity values to each."
+  },
+  {
+    "question_id": 48,
+    "topic": "Segmentation",
+    "question": "Which architecture is defined as an asymmetric encoder-decoder network featuring extensive horizontal skip connections to preserve high-resolution spatial details for biomedical image segmentation?",
+    "options": {
+      "a": "VGG",
+      "b": "U-Net",
+      "c": "YOLO",
+      "d": "SimCLR"
+    },
+    "correct_answer": "b",
+    "text_answer": "U-Net"
+  },
+  {
+    "question_id": 49,
+    "topic": "Segmentation",
+    "question": "What key architectural component is utilized by DeepLab models to control the receptive field of convolutional filters without increasing parameter counts?",
+    "options": {
+      "a": "Depthwise Separable Convolutions",
+      "b": "Atrous (Dilated) Convolutions",
+      "c": "Causal Attention Masks",
+      "d": "Linear Classification Headers"
+    },
+    "correct_answer": "b",
+    "text_answer": "Atrous (Dilated) Convolutions"
+  },
+  {
+    "question_id": 50,
+    "topic": "Segmentation",
+    "question": "What category describes Panoptic Segmentation?",
+    "options": {
+      "a": "It calculates bounding boxes and regression coordinates simultaneously.",
+      "b": "It unifies both semantic segmentation (labeling background stuff) and instance segmentation (identifying individual distinct things).",
+      "c": "It is an unsupervised approach that avoids the use of any loss function targets.",
+      "d": "It visualizes weights as spatial templates."
+    },
+    "correct_answer": "b",
+    "text_answer": "It unifies both semantic segmentation (labeling background stuff) and instance segmentation (identifying individual distinct things)."
+  },
+  {
+    "question_id": 51,
+    "topic": "Object Detection",
+    "question": "What is the defining operational mechanism of a 'Two-Stage' Object Detector (such as the Faster R-CNN family)?",
+    "options": {
+      "a": "It uses a single pipeline to extract masks and classes in a single backward pass step.",
+      "b": "It first generates candidate regions of interest (proposals) and then refines coordinates and classifies each region in a second stage.",
+      "c": "It processes the input image twice: first horizontally and then vertically.",
+      "d": "It completely replaces convolutional blocks with self-supervised contrastive learning encoders."
+    },
+    "correct_answer": "b",
+    "text_answer": "It first generates candidate regions of interest (proposals) and then refines coordinates and classifies each region in a second stage."
+  },
+  {
+    "question_id": 52,
+    "topic": "Object Detection",
+    "question": "Which of the following models represents a classic 'One-Stage' Object Detector that optimizes speed by directly mapping pixels to bounding boxes and class scores in one pass?",
+    "options": {
+      "a": "U-Net",
+      "b": "YOLO (You Only Look Once)",
+      "c": "Faster R-CNN",
+      "d": "Mask R-CNN"
+    },
+    "correct_answer": "b",
+    "text_answer": "YOLO (You Only Look Once)"
+  },
+  {
+    "question_id": 53,
+    "topic": "Object Detection",
+    "question": "What is the purpose of Non-Maximum Suppression (NMS) during the post-processing phase of an object detection model?",
+    "options": {
+      "a": "To eliminate gradients that drop below a threshold.",
+      "b": "To filter out redundant, overlapping bounding box predictions for the same object, keeping only the box with the highest confidence.",
+      "c": "To expand the size of the feature maps before calculating loss metrics.",
+      "d": "To randomly augment input coordinates."
+    },
+    "correct_answer": "b",
+    "text_answer": "To filter out redundant, overlapping bounding box predictions for the same object, keeping only the box with the highest confidence."
+  },
+  {
+    "question_id": 54,
+    "topic": "Object Detection",
+    "question": "What are 'Anchor Boxes' in the context of object detection systems?",
+    "options": {
+      "a": "Boxes used to anchor the model weights to zero during backward updates.",
+      "b": "Pre-defined reference boxes of specific scales and aspect ratios used as templates for predicting object locations.",
+      "c": "The coordinate outlines of the background pixels inside segmentation decoders.",
+      "d": "The input patch shapes utilized by Vision Transformers."
+    },
+    "correct_answer": "b",
+    "text_answer": "Pre-defined reference boxes of specific scales and aspect ratios used as templates for predicting object locations."
+  },
+  {
+    "question_id": 55,
+    "topic": "Visualization",
+    "question": "Which visualization methodology computes the raw mathematical gradient of the final output class loss with respect to the individual input image pixels to construct a pixel-level importance map?",
+    "options": {
+      "a": "Grad-CAM",
+      "b": "Saliency Maps",
+      "c": "Linear Weight Reshaping Templates",
+      "d": "Bilinear Upsampling Projections"
+    },
+    "correct_answer": "b",
+    "text_answer": "Saliency Maps"
+  },
+  {
+    "question_id": 56,
+    "topic": "Visualization",
+    "question": "How does Grad-CAM produce its visualization overlay map?",
+    "options": {
+      "a": "By flattening the weights of the first layer into 32x32 templates.",
+      "b": "By using the gradients flowing into the final convolutional layer to calculate coarse spatial weight maps highlighting important image regions.",
+      "c": "By zeroing out random activations to observe changes in prediction behavior.",
+      "d": "By converting feature tensors into natural language text strings."
+    },
+    "correct_answer": "b",
+    "text_answer": "By using the gradients flowing into the final convolutional layer to calculate coarse spatial weight maps highlighting important image regions."
+  },
+  {
+    "question_id": 57,
+    "topic": "Self-Supervised Learning (SSL)",
+    "question": "What is the primary objective of Self-Supervised Learning?",
+    "options": {
+      "a": "To achieve maximum training speed by ignoring batch sizes.",
+      "b": "To learn high-quality, useful feature representations from unlabeled data by formulating an artificial pretext task.",
+      "c": "To optimize the deployment speed on mobile embedded platforms.",
+      "d": "To enforce a strict non-increasing precision curve layout."
+    },
+    "correct_answer": "b",
+    "text_answer": "To learn high-quality, useful feature representations from unlabeled data by formulating an artificial pretext task."
+  },
+  {
+    "question_id": 58,
+    "topic": "Self-Supervised Learning (SSL)",
+    "question": "How does Contrastive Learning (e.g., SimCLR, MoCo) guide feature mapping optimization?",
+    "options": {
+      "a": "By using standard cross-entropy loss against hand-labeled class coordinates.",
+      "b": "By pushing the embedding representations of positive pairs (differently augmented views of the same image) closer while pulling negative pairs apart.",
+      "c": "By forcing the encoder model to predict the exact color space of masked pixels.",
+      "d": "By minimizing the area under the precision-recall curve."
+    },
+    "correct_answer": "b",
+    "text_answer": "By pushing the embedding representations of positive pairs (differently augmented views of the same image) closer while pulling negative pairs apart."
+  },
+  {
+    "question_id": 59,
+    "topic": "Self-Supervised Learning (SSL)",
+    "question": "What is the core strategy of a Masked Autoencoder (MAE) in visual self-supervised frameworks?",
+    "options": {
+      "a": "It applies random flips to the labels to confuse the model.",
+      "b": "It masks out a large fraction of image patches and trains an encoder-decoder to reconstruct the original missing pixels.",
+      "c": "It forces all weights to align with an identity matrix.",
+      "d": "It extracts multi-scale anchors using an atrous filter block."
+    },
+    "correct_answer": "b",
+    "text_answer": "It masks out a large fraction of image patches and trains an encoder-decoder to reconstruct the original missing pixels."
+  },
+  {
+    "question_id": 60,
+    "topic": "Multimodal",
+    "question": "What is the defining capability of OpenAI's CLIP model architecture?",
+    "options": {
+      "a": "Generating highly realistic high-resolution images out of continuous audio clips.",
+      "b": "Learning jointly aligned visual and textual representations via contrastive pre-training on millions of text-image pairs.",
+      "c": "Performing dense panoptic pixel segmentation without an encoder.",
+      "d": "Solving spatial mismatch errors inside PyTorch dataloaders."
+    },
+    "correct_answer": "b",
+    "text_answer": "Learning jointly aligned visual and textual representations via contrastive pre-training on millions of text-image pairs."
+  },
+  {
+    "question_id": 61,
+    "topic": "Multimodal",
+    "question": "Which mechanism allows multimodal architectures to selectively align information across completely different input modes (such as attending across text descriptors and image patch regions)?",
+    "options": {
+      "a": "Depthwise point convolutions",
+      "b": "Cross-Modal Attention",
+      "c": "Bilinear Spatial Upsampling",
+      "d": "Stochastic Gradient Warping"
+    },
+    "correct_answer": "b",
+    "text_answer": "Cross-Modal Attention"
+  },
+  {
+    "question_id": 62,
+    "topic": "Code Questions & Tensor Manipulation",
+    "question": "According to the PyTorch standard broadcasting rules, what happens when you attempt to add two tensors with shapes `[3, 1, 5]` and `[1, 4, 5]`?",
+    "options": {
+      "a": "The execution fails with a runtime shape mismatch error.",
+      "b": "The dimensions are broadcasted from right to left, resulting in a valid tensor of shape `[3, 4, 5]`.",
+      "c": "The dimensions collapse, resulting in a single flat vector of size `[15]`.",
+      "d": "The operation executes but drops the last dimension, yielding `[3, 4]`."
+    },
+    "correct_answer": "b",
+    "text_answer": "The dimensions are broadcasted from right to left, resulting in a valid tensor of shape `[3, 4, 5]`."
+  },
+  {
+    "question_id": 63,
+    "topic": "Code Questions & Tensor Manipulation",
+    "question": "What is the operational outcome of applying `t.unsqueeze(0)` on a PyTorch tensor `t` that currently has a shape of `[3, 224, 224]`?",
+    "options": {
+      "a": "It flattens the entire tensor to a 1D sequence.",
+      "b": "It inserts a new dimension of size 1 at index position 0, transforming the shape to `[1, 3, 224, 224]`.",
+      "c": "It deletes the first channel axis, producing `[224, 224]`.",
+      "d": "It multiplies all the activation elements by zero."
+    },
+    "correct_answer": "b",
+    "text_answer": "It inserts a new dimension of size 1 at index position 0, transforming the shape to `[1, 3, 224, 224]`."
+  },
+  {
+    "question_id": 64,
+    "topic": "Code Questions & Tensor Manipulation",
+    "question": "You execute the operation `out = tensor.softmax(dim=-1)`. Along which axis is the Softmax normalization computed?",
+    "options": {
+      "a": "Along the very first batch dimension axis.",
+      "b": "Along the final/last dimension of the tensor.",
+      "c": "Across all axes globally, reducing the output to a scalar.",
+      "d": "Only along the spatial channel dimension."
+    },
+    "correct_answer": "b",
+    "text_answer": "Along the final/last dimension of the tensor."
+  },
+  {
+    "question_id": 65,
+    "topic": "Code Questions & Tensor Manipulation",
+    "question": "What does the instruction `x.numel()` return when applied to a PyTorch tensor?",
+    "options": {
+      "a": "The number of spatial dimensions (the rank) of the tensor.",
+      "b": "The total number of elements contained within the tensor structure.",
+      "c": "The data type string of the underlying matrix.",
+      "d": "The statistical mean value computed across the batch."
+    },
+    "correct_answer": "b",
+    "text_answer": "The total number of elements contained within the tensor structure."
+  },
+  {
+    "question_id": 66,
+    "topic": "Laboratories Context",
+    "question": "In Lab 6, you applied the 'precision envelope' correction step (`precision[k] = max(precision[k], precision[k+1])`) to the precision-recall curve before computing Average Precision (AP). What is the purpose of this step?",
+    "options": {
+      "a": "It averages adjacent precision values to eliminate measurement noise from the curve.",
+      "b": "It enforces a monotonically non-increasing precision curve from left to right, making the AP calculation stable and less sensitive to small variations in ranking.",
+      "c": "It scales precision values to compensate for low IoU thresholds.",
+      "d": "It normalizes values to a strict range between -1 and 1."
+    },
+    "correct_answer": "b",
+    "text_answer": "It enforces a monotonically non-increasing precision curve from left to right, making the AP calculation stable and less sensitive to small variations in ranking."
+  },
+  {
+    "question_id": 67,
+    "topic": "Laboratories Context",
+    "question": "In Lab 4, you implemented paired geometric augmentation. What problem occurs if you apply a random horizontal flip transformation to the input image but fail to apply it to the corresponding segmentation target mask?",
+    "options": {
+      "a": "The network pipeline crashes with a memory allocation error.",
+      "b": "The pixel-level supervision becomes spatially misaligned, corrupting the training process.",
+      "c": "The model trains significantly faster because the labels remain stationary.",
+      "d": "Nothing goes wrong because segmentation classes are global properties."
+    },
+    "correct_answer": "b",
+    "text_answer": "The pixel-level supervision becomes spatially misaligned, corrupting the training process."
+  },
+  {
+    "question_id": 68,
+    "topic": "Laboratories Context",
+    "question": "In Lab 5, you implemented single-head self-attention from scratch. Given the attention matrix A = softmax(QK^T / sqrt(D)) with shape (B, T, T), what does an individual entry A[b, i, j] represent?",
+    "options": {
+      "a": "The Euclidean distance separating patch token i from patch token j.",
+      "b": "The relative weight or attention token i places on token j when gathering contextual information within sample b.",
+      "c": "The direct backpropagation loss gradient affecting weight matrix parameters.",
+      "d": "The probability that token i and token j belong to the same background class."
+    },
+    "correct_answer": "b",
+    "text_answer": "The relative weight or attention token i places on token j when gathering contextual information within sample b."
+  },
+  {
+    "question_id": 69,
+    "topic": "Laboratories Context",
+    "question": "You analyze NumPy array operations. Given a 2D array `a = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])`, what is the exact output of executing `np.sum(a, axis=0)`?",
+    "options": {
+      "a": "[10, 26]",
+      "b": "[6, 8, 10, 12]",
+      "c": "36",
+      "d": "[7, 9, 11, 13]"
+    },
+    "correct_answer": "b",
+    "text_answer": "[6, 8, 10, 12]"
+  },
+  {
+    "question_id": 70,
+    "topic": "Laboratories Context",
+    "question": "In Lab 6, you enforced a strict constraint when implementing Average Precision: each individual ground truth bounding box can match with at most one predicted box. Why is this tracking constraint necessary?",
+    "options": {
+      "a": "It reduces the memory footprint of the evaluation script.",
+      "b": "Without it, a model predicting multiple duplicate boxes for a single object would accumulate multiple True Positives, artificially inflating precision and recall metrics.",
+      "c": "It is required to prevent the IoU formula from generating negative fractions.",
+      "d": "It forces the detector to use anchor boxes exclusively."
+    },
+    "correct_answer": "b",
+    "text_answer": "Without it, a model predicting multiple duplicate boxes for a single object would accumulate multiple True Positives, artificially inflating precision and recall metrics."
+  },
+  {
+    "question_id": 71,
+    "topic": "Laboratories Context",
+    "question": "In Lab 3, you tested a custom convolution forward implementation using the tensor shapes: x = shape(N, H, W, C) and w = shape(F, HH, WW, C). What does the index dimension 'F' represent?",
+    "options": {
+      "a": "The spatial height of the filter kernel matrix.",
+      "b": "The total number of distinct output filters (output channels) being computed.",
+      "c": "The pooling stride multiplier coefficient.",
+      "d": "The global batch expansion rate."
+    },
+    "correct_answer": "b",
+    "text_answer": "The total number of distinct output filters (output channels) being computed."
+  },
+  {
+    "question_id": 72,
+    "topic": "Laboratories Context",
+    "question": "After training a linear classifier on CIFAR-10, you reshape rows of the optimization weight matrix W into spatial images and visualize them. What do these visualizations reveal?",
+    "options": {
+      "a": "They display random noise distributions because individual weights are uninterpretable.",
+      "b": "Each row acts as a learned spatial template for its respective class; a high score results from a high dot product when the input matches this template layout.",
+      "c": "They display the exact first training sample appended to that specific class index.",
+      "d": "They reflect the augmentation path utilized by the DataLoader pipeline."
+    },
+    "correct_answer": "b",
+    "text_answer": "Each row acts as a learned spatial template for its respective class; a high score results from a high dot product when the input matches this template layout."
+  },
+  {
+    "question_id": 73,
+    "topic": "Laboratories Context",
+    "question": "You look at memory sharing in NumPy. Given: `a = np.array([[1, 2, 3], [4, 5, 6]])`, you create a slice `r = a[0:2, 0:1]`, and modify `r[0, 0] = 99`. What happens to the value of `a[0, 0]`?",
+    "options": {
+      "a": "It remains 1 because slicing always generates a complete independent copy in memory.",
+      "b": "It becomes 99 because basic slicing creates a view that shares the same underlying memory allocation with the original array.",
+      "c": "NumPy throws a runtime mutation exception prohibiting direct assignments.",
+      "d": "It is set to NaN because the step changes index dimensions."
+    },
+    "correct_answer": "b",
+    "text_answer": "It becomes 99 because basic slicing creates a view that shares the same underlying memory allocation with the original array."
+  },
+  {
+    "question_id": 74,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "What is the structural difference between Max Pooling and Average Pooling operations?",
+    "options": {
+      "a": "Max pooling learns weights, while average pooling uses fixed strides.",
+      "b": "Max pooling extracts the maximum value within a localized spatial neighborhood window, whereas Average pooling computes the arithmetic mean of those values.",
+      "c": "Average pooling can only handle single-channel tensor structures.",
+      "d": "Max pooling doubles the channel count while reducing spatial size."
+    },
+    "correct_answer": "b",
+    "text_answer": "Max pooling extracts the maximum value within a localized spatial neighborhood window, whereas Average pooling computes the arithmetic mean of those values."
+  },
+  {
+    "question_id": 75,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "For a Conv2D layer, if you increase the padding parameter 'p' while maintaining the input size, kernel size, and stride constant, what happens to the spatial size of the output?",
+    "options": {
+      "a": "The spatial dimensions of the output decrease.",
+      "b": "The spatial dimensions of the output increase.",
+      "c": "The spatial dimensions remain exactly identical.",
+      "d": "The layer automatically drops the final channel axis."
+    },
+    "correct_answer": "b",
+    "text_answer": "The spatial dimensions of the output increase."
+  },
+  {
+    "question_id": 76,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "What is the primary role of an activation function in deep neural network configurations?",
+    "options": {
+      "a": "To normalize the batch activations to have a mean of zero.",
+      "b": "To introduce non-linearities, allowing the network to approximate complex non-linear functions instead of behaving as a single linear mapping.",
+      "c": "To reduce the number of floating-point operations performed by the model.",
+      "d": "To manage the structural dimensions of tensor distributions."
+    },
+    "correct_answer": "b",
+    "text_answer": "To introduce non-linearities, allowing the network to approximate complex non-linear functions instead of behaving as a single linear mapping."
+  },
+  {
+    "question_id": 77,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "If an input tensor has shape `[B, C, H, W]`, across which dimensions are the normalization statistics calculated during a standard Batch Normalization layer forward pass?",
+    "options": {
+      "a": "Independently across each individual pixel spatial coordinate.",
+      "b": "Across the Batch (B), Height (H), and Width (W) dimensions, computing statistics independently for each channel.",
+      "c": "Across the Channels (C) axis exclusively for a single isolated sample.",
+      "d": "Globally across all values, reducing the tensor data to a single global variance scalar."
+    },
+    "correct_answer": "b",
+    "text_answer": "Across the Batch (B), Height (H), and Width (W) dimensions, computing statistics independently for each channel."
+  },
+  {
+    "question_id": 78,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "Which problem can emerge when utilizing the Sigmoid or Tanh activation functions in very deep networks without residual pathways?",
+    "options": {
+      "a": "Exploding parameters due to sharp discontinuous derivative jumps.",
+      "b": "Vanishing gradients, because their derivatives saturate at very small values when inputs are far from zero.",
+      "c": "Spatial dimension collapse inside intermediate layers.",
+      "d": "An automatic runtime error caused by negative input elements."
+    },
+    "correct_answer": "b",
+    "text_answer": "Vanishing gradients, because their derivatives saturate at very small values when inputs are far from zero."
+  },
+  {
+    "question_id": 79,
+    "topic": "CNN Architectures",
+    "question": "What structural modification does DenseNet use to pass features between blocks, distinguishing it from ResNet's summation mechanism?",
+    "options": {
+      "a": "It multiplies adjacent layer activations element-wise.",
+      "b": "It concatenates the feature maps along the channel dimension instead of adding them.",
+      "c": "It uses an atrous pooling layer to skip intermediate transformations.",
+      "d": "It routes feature tensors through a natural language tokenizer framework."
+    },
+    "correct_answer": "b",
+    "text_answer": "It concatenates the feature maps along the channel dimension instead of adding them."
+  },
+  {
+    "question_id": 80,
+    "topic": "CNN Architectures",
+    "question": "Why are 1x1 convolutions sometimes referred to as 'Network-in-Network' or 'pointwise' convolutions?",
+    "options": {
+      "a": "Because they only operate on single-channel black-and-white input distributions.",
+      "b": "Because they compute linear combinations across the channel dimension at each individual spatial coordinate without pooling information across neighboring pixels.",
+      "c": "Because they alter the spatial height and width values while ignoring channels.",
+      "d": "Because they lack learnable weight parameters."
+    },
+    "correct_answer": "b",
+    "text_answer": "Because they compute linear combinations across the channel dimension at each individual spatial coordinate without pooling information across neighboring pixels."
+  },
+  {
+    "question_id": 81,
+    "topic": "CNN Architectures",
+    "question": "Which architecture represents the historic foundation of modern CNN designs, originally applied by LeCun to recognize handwritten digits on check arrays?",
+    "options": {
+      "a": "AlexNet",
+      "b": "LeNet-5",
+      "c": "VGG-16",
+      "d": "ResNet-50"
+    },
+    "correct_answer": "b",
+    "text_answer": "LeNet-5"
+  },
+  {
+    "question_id": 82,
+    "topic": "Optimization",
+    "question": "What is the primary operational effect of adding a 'Momentum' term to standard Stochastic Gradient Descent?",
+    "options": {
+      "a": "It forces the network to calculate parameter updates using large random numbers.",
+      "b": "It accumulates a moving average of past gradients to accelerate optimization in relevant directions and dampen oscillations.",
+      "c": "It forces the validation loss to match the training loss exactly.",
+      "d": "It completely deactivates dropout fields during training phases."
+    },
+    "correct_answer": "b",
+    "text_answer": "It accumulates a moving average of past gradients to accelerate optimization in relevant directions and dampen oscillations."
+  },
+  {
+    "question_id": 83,
+    "topic": "Optimization",
+    "question": "If you observe stable training performance but notice your final accuracy metrics are poor on both your training and validation datasets, what optimization issue is present?",
+    "options": {
+      "a": "Extreme Overfitting",
+      "b": "Underfitting",
+      "c": "Exploding Gradients",
+      "d": "Broadcasting Shape Error"
+    },
+    "correct_answer": "b",
+    "text_answer": "Underfitting"
+  },
+  {
+    "question_id": 84,
+    "topic": "Loss Functions",
+    "question": "When optimizing a model using Multi-Class Cross-Entropy loss, what does a high loss value indicate about a specific prediction?",
+    "options": {
+      "a": "The model assigned a low probability to the correct ground-truth class label.",
+      "b": "The model predicted continuous coordinates that are spatially distant from the target boxes.",
+      "c": "The target image is dominated by background pixels.",
+      "d": "The parameters have completely converged to a stable local minimum."
+    },
+    "correct_answer": "a",
+    "text_answer": "The model assigned a low probability to the correct ground-truth class label."
+  },
+  {
+    "question_id": 85,
+    "topic": "Evaluation Metrics",
+    "question": "If a classifier has a Precision score of 1.0 for a given class, what can be inferred about its predictions for that class?",
+    "options": {
+      "a": "It successfully identified every single actual instance of that class in the dataset.",
+      "b": "Every instance it predicted as belonging to that class was correct, resulting in zero False Positives for that class.",
+      "c": "Its Recall score must also be exactly equal to 1.0.",
+      "d": "It failed to classify any negative samples correctly."
+    },
+    "correct_answer": "b",
+    "text_answer": "Every instance it predicted as belonging to that class was correct, resulting in zero False Positives for that class."
+  },
+  {
+    "question_id": 86,
+    "topic": "Evaluation Metrics",
+    "question": "If a validation run yields a Recall score of 1.0 for a given target class, what does this indicate?",
+    "options": {
+      "a": "The model produced zero False Positives for that category.",
+      "b": "The model successfully found every positive instance of that class present in the dataset, leaving zero False Negatives.",
+      "c": "The spatial bounding box aligns perfectly with the target anchors.",
+      "d": "The precision envelope correction is unnecessary."
+    },
+    "correct_answer": "b",
+    "text_answer": "The model successfully found every positive instance of that class present in the dataset, leaving zero False Negatives."
+  },
+  {
+    "question_id": 87,
+    "topic": "Transformers",
+    "question": "What does the term 'multi-head' signify in the Context of a Transformer's Multi-Head Attention layer?",
+    "options": {
+      "a": "The model contains multiple classification heads operating on separate image resolutions.",
+      "b": "The attention mechanism is split into multiple parallel heads, each computing independent Query, Key, and Value projections to capture diverse relationships.",
+      "c": "The model uses multiple GPUs simultaneously to compute a single attention matrix.",
+      "d": "The layer alternates between processing text strings and image patches sequentially."
+    },
+    "correct_answer": "b",
+    "text_answer": "The attention mechanism is split into multiple parallel heads, each computing independent Query, Key, and Value projections to capture diverse relationships."
+  },
+  {
+    "question_id": 88,
+    "topic": "Transformers",
+    "question": "What is the computational complexity of the standard Self-Attention layer with respect to the sequence length T?",
+    "options": {
+      "a": "O(T)",
+      "b": "O(T^2)",
+      "c": "O(log T)",
+      "d": "O(1)"
+    },
+    "correct_answer": "b",
+    "text_answer": "O(T^2)"
+  },
+  {
+    "question_id": 89,
+    "topic": "Segmentation",
+    "question": "What is the structural role of the skip connections in a classic U-Net architecture?",
+    "options": {
+      "a": "To bypass the loss calculation step during early training stages.",
+      "b": "To forward high-resolution spatial feature maps directly from the contracting encoder blocks to the expanding decoder blocks, preserving fine details.",
+      "c": "To convert the spatial tensor dimensions into natural language text tokens.",
+      "d": "To reduce the parameter footprint of the convolutional kernels."
+    },
+    "correct_answer": "b",
+    "text_answer": "To forward high-resolution spatial feature maps directly from the contracting encoder blocks to the expanding decoder blocks, preserving fine details."
+  },
+  {
+    "question_id": 90,
+    "topic": "Object Detection",
+    "question": "Which of the following is a primary feature of the YOLO (You Only Look Once) architecture?",
+    "options": {
+      "a": "It uses an independent Region Proposal Network to select candidate objects in an isolated step.",
+      "b": "It frames object detection as a single unified regression problem, predicting bounding box coordinates and class probabilities directly from the full image in a single pass.",
+      "c": "It operates strictly on continuous audio data tracks.",
+      "d": "It requires that all test images undergo a precision envelope correction."
+    },
+    "correct_answer": "b",
+    "text_answer": "It frames object detection as a single unified regression problem, predicting bounding box coordinates and class probabilities directly from the full image in a single pass."
+  },
+  {
+    "question_id": 91,
+    "topic": "Visualization",
+    "question": "What type of information is displayed when visualizing intermediate feature maps (activations) from the early layers of a deep CNN?",
+    "options": {
+      "a": "Highly abstract semantic concepts like object categories.",
+      "b": "Low-level structural features such as edges, lines, colors, and simple textures.",
+      "c": "The exact mathematical derivatives computed during the backward pass.",
+      "d": "The target bounding box anchor alignments."
+    },
+    "correct_answer": "b",
+    "text_answer": "Low-level structural features such as edges, lines, colors, and simple textures."
+  },
+  {
+    "question_id": 92,
+    "topic": "Self-Supervised Learning (SSL)",
+    "question": "In Self-Supervised Learning frameworks like SimCLR, what is the role of the 'projection head' appended to the encoder network?",
+    "options": {
+      "a": "To upsample the feature maps to their original spatial input dimensions.",
+      "b": "To map the encoder's latent representations into a lower-dimensional space where the contrastive loss objective is applied, improving representation quality.",
+      "c": "To classify the image into a fixed set of predefined categories.",
+      "d": "To introduce horizontal flip augmentations into the pipeline."
+    },
+    "correct_answer": "b",
+    "text_answer": "To map the encoder's latent representations into a lower-dimensional space where the contrastive loss objective is applied, improving representation quality."
+  },
+  {
+    "question_id": 93,
+    "topic": "Multimodal",
+    "question": "How does text-to-image generation work conceptually in architectures like Stable Diffusion?",
+    "options": {
+      "a": "The system processes a text prompt through an encoder and uses cross-attention mechanisms to iteratively guide a diffusion denoising process to generate an image matching the text description.",
+      "b": "The model looks up a pre-existing image file in a massive database using a dictionary index search.",
+      "c": "It uses a standard ResNet model to classify text characters into color pixel templates.",
+      "d": "It forces the image pixels to collapse into a single scalar representation."
+    },
+    "correct_answer": "a",
+    "text_answer": "The system processes a text prompt through an encoder and uses cross-attention mechanisms to iteratively guide a diffusion denoising process to generate an image matching the text description."
+  },
+  {
+    "question_id": 94,
+    "topic": "Code Questions & Tensor Manipulation",
+    "question": "Given a PyTorch tensor `x` with shape `[10, 3, 4]`, what is the shape of the tensor resulting from the operation `x.view(-1, 2)`?",
+    "options": {
+      "a": "`[10, 6]`",
+      "b": "`[60, 2]`",
+      "c": "`[120, 2]`",
+      "d": "A shape mismatch error is thrown because `-1` is invalid in PyTorch."
+    },
+    "correct_answer": "b",
+    "text_answer": "`[60, 2]`"
+  },
+  {
+    "question_id": 95,
+    "topic": "Code Questions & Tensor Manipulation",
+    "question": "What is the outcome of adding two tensors with shapes `[5, 5]` and `[5]` using standard NumPy broadcasting rules?",
+    "options": {
+      "a": "A shape mismatch error occurs because the arrays have a different number of dimensions.",
+      "b": "The 1D array of shape `[5]` is broadcast across each row of the `[5, 5]` matrix, yielding a result of shape `[5, 5]`.",
+      "c": "Both arrays collapse into a single flat array of shape `[25]`.",
+      "d": "The operation executes but drops the first row of the matrix."
+    },
+    "correct_answer": "b",
+    "text_answer": "The 1D array of shape `[5]` is broadcast across each row of the `[5, 5]` matrix, yielding a result of shape `[5, 5]`."
+  },
+  {
+    "question_id": 96,
+    "topic": "Laboratories Context",
+    "question": "In Lab 4, you utilized Dice Loss alongside Cross-Entropy to train a face segmentation network. What mathematical properties make Dice Loss robust against extreme foreground-background class imbalances?",
+    "options": {
+      "a": "It ignores the background class pixels completely, computing gradients only on target boundaries.",
+      "b": "It scales errors exponentially to ensure background pixels match a zero target.",
+      "c": "It measures the direct spatial overlap region between prediction and target masks globally, preventing a dominant background class from overwhelming the gradient updates.",
+      "d": "It flattens the parameters of the decoder blocks into linear templates."
+    },
+    "correct_answer": "c",
+    "text_answer": "It measures the direct spatial overlap region between prediction and target masks globally, preventing a dominant background class from overwhelming the gradient updates."
+  },
+  {
+    "question_id": 97,
+    "topic": "Basic Layers in Deep Learning",
+    "question": "What is the spatial output size of a 2D convolutional layer given an input size of 32x32, a kernel size of 5x5, a stride of 1, and padding of 0?",
+    "options": {
+      "a": "32x32",
+      "b": "28x28",
+      "c": "30x30",
+      "d": "26x26"
+    },
+    "correct_answer": "b",
+    "text_answer": "28x28"
+  },
+  {
+    "question_id": 98,
+    "topic": "CNN Architectures",
+    "question": "Which architecture introduced 'Residual Blocks' containing identity pathways that bypass nonlinear transformations?",
+    "options": {
+      "a": "AlexNet",
+      "b": "VGG",
+      "c": "ResNet",
+      "d": "GoogLeNet"
+    },
+    "correct_answer": "c",
+    "text_answer": "ResNet"
+  },
+  {
+    "question_id": 99,
+    "topic": "Optimization",
+    "question": "What does a Learning Rate Schedule do during neural network optimization?",
+    "options": {
+      "a": "It adjusts the size of the input images at each epoch.",
+      "b": "It dynamically modifies the value of the learning rate over the course of training according to a predefined plan to assist convergence.",
+      "c": "It alters the total number of channels in the convolutional filters.",
+      "d": "It turns dropout on and off randomly at each batch step."
+    },
+    "correct_answer": "b",
+    "text_answer": "It dynamically modifies the value of the learning rate over the course of training according to a predefined plan to assist convergence."
+  },
+  {
+    "question_id": 100,
+    "topic": "Evaluation Metrics",
+    "question": "What does an Intersection over Union (IoU) score of 0.0 indicate about two bounding boxes?",
+    "options": {
+      "a": "The two boxes align perfectly with each other.",
+      "b": "There is absolutely no spatial overlap between the predicted bounding box and the ground-truth box.",
+      "c": "The boxes share identical centers but have different aspect ratios.",
+      "d": "The recall performance is optimized."
+    },
+    "correct_answer": "b",
+    "text_answer": "There is absolutely no spatial overlap between the predicted bounding box and the ground-truth box."
+  }
+]
