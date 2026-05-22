@@ -1,0 +1,1012 @@
+{
+    "concepts": [
+        {
+            "name": "Conv2D",
+            "topic": "Basic Layers",
+            "bullets": [
+                "is a convolutional layer that applies learnable 2D filters (kernels) over spatial dimensions of an input feature map",
+                "has parameters determined by kernel_size, in_channels, out_channels, stride, padding, and optional bias",
+                "has the effect of extracting local patterns such as edges, textures, and shapes by sliding kernels over height and width",
+                "reduces or preserves spatial resolution depending on stride and padding configuration",
+                "shares filter weights across spatial locations, making it more parameter-efficient than fully connected layers for images",
+                "is usually followed by a non-linear activation function and sometimes normalization"
+            ]
+        },
+        {
+            "name": "Max Pooling",
+            "topic": "Basic Layers",
+            "bullets": [
+                "is a downsampling operation that outputs the maximum value within each local window of the input feature map",
+                "has hyperparameters such as kernel_size, stride, and padding that control the size and step of the pooling window",
+                "reduces spatial resolution while keeping the number of channels unchanged",
+                "does not have any learnable parameters because it only applies a fixed max operation",
+                "helps achieve translation invariance by making small spatial shifts in the input produce similar outputs",
+                "can act as a form of regularization by discarding less active responses"
+            ]
+        },
+        {
+            "name": "Average Pooling",
+            "topic": "Basic Layers",
+            "bullets": [
+                "is a downsampling operation that outputs the arithmetic mean of values within each local window",
+                "has similar hyperparameters to max pooling (kernel_size, stride, padding)",
+                "reduces spatial resolution without changing the number of channels",
+                "does not learn parameters and only performs a fixed averaging operation",
+                "tends to produce smoother feature maps compared to max pooling because it aggregates all values",
+                "is often used as global average pooling at the end of CNNs to collapse each channel to a single scalar"
+            ]
+        },
+        {
+            "name": "Batch Normalization",
+            "topic": "Basic Layers",
+            "bullets": [
+                "is a normalization layer that standardizes activations per mini-batch along specific dimensions",
+                "has learnable gamma (scale) and beta (shift) parameters for each normalized channel",
+                "reduces internal covariate shift by stabilizing the distribution of activations during training",
+                "often allows the use of higher learning rates and speeds up convergence",
+                "behaves differently in training and evaluation modes, using batch statistics during training and running estimates during evaluation",
+                "acts as a mild regularizer but is not a replacement for explicit regularization like dropout or weight decay"
+            ]
+        },
+        {
+            "name": "Dropout",
+            "topic": "Basic Layers",
+            "bullets": [
+                "is a regularization technique that randomly sets a fraction of activations to zero during training",
+                "has a dropout probability p that controls how many units are dropped on each forward pass",
+                "helps prevent overfitting by discouraging co-adaptation of neurons and promoting redundancy",
+                "is disabled in evaluation mode so that all activations pass through without being dropped",
+                "implicitly performs model averaging by simulating many thinned networks during training",
+                "is typically used in fully connected layers and sometimes in convolutional layers with care"
+            ]
+        },
+        {
+            "name": "ReLU",
+            "topic": "Basic Layers",
+            "bullets": [
+                "is a piecewise linear activation function defined as max(0, x)",
+                "has the effect of zeroing out negative activations and leaving positive ones unchanged",
+                "introduces non-linearity while being computationally cheap",
+                "can suffer from the \"dying ReLU\" problem where neurons stuck with negative inputs output zero and stop updating",
+                "helps mitigate vanishing gradients compared to saturating activations like sigmoid or tanh",
+                "is widely used in CNNs and MLPs as a default activation choice"
+            ]
+        },
+        {
+            "name": "Sigmoid",
+            "topic": "Basic Layers",
+            "bullets": [
+                "is a smooth activation function that maps real values into the range (0, 1)",
+                "has the form 1 / (1 + exp(-x)) and is often interpreted as a probability",
+                "is commonly used in the output layer of binary or multi-label classification tasks",
+                "can cause vanishing gradients when activations saturate near 0 or 1",
+                "is symmetric around 0.5, not around 0, which can slow down optimization in deep networks",
+                "is usually avoided in deep hidden layers in modern architectures due to gradient issues"
+            ]
+        },
+        {
+            "name": "Tanh",
+            "topic": "Basic Layers",
+            "bullets": [
+                "is a smooth activation function that maps real values into the range (-1, 1)",
+                "is zero-centered, which can be advantageous compared to sigmoid in some optimization settings",
+                "still suffers from saturation and vanishing gradients for large positive or negative inputs",
+                "was widely used in older networks and RNNs before ReLU-style activations became dominant",
+                "can be useful in specific architectures where bounded outputs are desired"
+            ]
+        },
+        {
+            "name": "GELU",
+            "topic": "Basic Layers",
+            "bullets": [
+                "is the Gaussian Error Linear Unit activation used in many transformer-based models",
+                "behaves like a smooth, probabilistic version of ReLU that weights inputs by their probability of being positive under a Gaussian",
+                "often improves performance and stability in very deep architectures compared to plain ReLU",
+                "is more computationally expensive than ReLU but is still practical with modern accelerators",
+                "is commonly used together with LayerNorm and residual connections in transformer blocks"
+            ]
+        },
+        {
+            "name": "Fully Connected (Linear) Layer",
+            "topic": "Basic Layers",
+            "bullets": [
+                "is a dense layer where every input unit connects to every output unit via a weight",
+                "has parameters organized in a weight matrix of shape [out_features, in_features] plus an optional bias vector",
+                "treats all input features equally without regard to spatial structure",
+                "is typically used after convolutional and pooling layers for classification or regression heads",
+                "can lead to many parameters for high-dimensional inputs, which can encourage overfitting if not controlled"
+            ]
+        },
+        {
+            "name": "LeNet",
+            "topic": "CNN Architectures",
+            "bullets": [
+                "is one of the earliest convolutional neural network architectures designed for digit recognition",
+                "has a relatively shallow structure with alternating convolution, pooling, and fully connected layers",
+                "uses small grayscale inputs and simple convolutions compared to modern deep networks",
+                "demonstrated that learned convolutional features outperform handcrafted features for vision tasks",
+                "laid the foundation for later large-scale CNN architectures like AlexNet and VGG"
+            ]
+        },
+        {
+            "name": "AlexNet",
+            "topic": "CNN Architectures",
+            "bullets": [
+                "is a deep CNN that achieved a breakthrough result on the ImageNet classification challenge",
+                "has multiple convolutional layers followed by fully connected layers, using ReLU activations extensively",
+                "introduced heavy use of data augmentation, dropout, and GPU training for large-scale vision",
+                "uses large first-layer kernels and overlapping max pooling in early layers",
+                "helped popularize deep learning for computer vision in practice"
+            ]
+        },
+        {
+            "name": "VGG",
+            "topic": "CNN Architectures",
+            "bullets": [
+                "is a CNN architecture that uses a very uniform design with many stacked 3x3 convolutions",
+                "has deep variants (e.g., VGG-16, VGG-19) with a large number of layers and parameters",
+                "relies on repeated blocks of conv-conv-pool to reduce spatial size and increase channels",
+                "achieves strong performance but is computationally expensive and memory heavy",
+                "is often used as a backbone for transfer learning, especially in earlier works"
+            ]
+        },
+        {
+            "name": "GoogLeNet / Inception",
+            "topic": "CNN Architectures",
+            "bullets": [
+                "is a CNN family that introduced Inception modules with multiple parallel convolutional paths",
+                "uses 1x1 convolutions extensively for dimensionality reduction and computational efficiency",
+                "combines convolutions with different kernel sizes in parallel to capture multi-scale features",
+                "reduces parameter count compared to very deep uniform stacks like VGG",
+                "popularized the idea of carefully designed modules instead of naive depth increase"
+            ]
+        },
+        {
+            "name": "ResNet",
+            "topic": "CNN Architectures",
+            "bullets": [
+                "is a residual network architecture that uses skip connections (identity mappings) across blocks",
+                "addresses vanishing gradients and degradation when making networks very deep",
+                "models each block as learning a residual function relative to its input",
+                "has variants with different depths (e.g., ResNet-18, ResNet-50, ResNet-101) built from residual blocks or bottleneck blocks",
+                "became a standard backbone for many tasks including detection, segmentation, and recognition"
+            ]
+        },
+        {
+            "name": "DenseNet",
+            "topic": "CNN Architectures",
+            "bullets": [
+                "is a CNN architecture where each layer within a block receives as input the concatenation of all previous layers' feature maps",
+                "promotes feature reuse and encourages implicit deep supervision through dense connections",
+                "tends to require fewer parameters because it can use narrower layers while maintaining rich representations",
+                "introduces growth rate and transition layers to control channel dimensionality and downsampling",
+                "can improve gradient flow and generalization compared to plain feed-forward stacks"
+            ]
+        },
+        {
+            "name": "MobileNet",
+            "topic": "CNN Architectures",
+            "bullets": [
+                "is a family of lightweight CNNs designed for mobile and embedded devices",
+                "relies heavily on depthwise separable convolutions to drastically reduce computation and parameters",
+                "introduces width multipliers and resolution multipliers to trade off accuracy versus efficiency",
+                "is often used as a backbone in real-time detection and segmentation models on resource-constrained hardware"
+            ]
+        },
+        {
+            "name": "EfficientNet",
+            "topic": "CNN Architectures",
+            "bullets": [
+                "is a CNN family that scales depth, width, and resolution in a principled, compound way",
+                "starts from a small baseline network and applies fixed scaling coefficients to obtain larger variants",
+                "achieves strong accuracy-efficiency tradeoffs compared to earlier CNNs",
+                "is frequently used in image classification benchmarks and as a backbone for downstream tasks"
+            ]
+        },
+        {
+            "name": "Stochastic Gradient Descent (SGD)",
+            "topic": "Optimization",
+            "bullets": [
+                "is an optimization algorithm that updates model parameters using gradients computed on small mini-batches instead of the full dataset",
+                "has a learning rate hyperparameter that controls the step size of each parameter update",
+                "introduces stochasticity because each mini-batch provides a noisy estimate of the true gradient",
+                "can escape shallow local minima and saddle points thanks to gradient noise",
+                "is simple to implement and widely used as a baseline optimizer",
+                "can be enhanced with momentum, weight decay, and learning rate schedules for better convergence"
+            ]
+        },
+        {
+            "name": "SGD with Momentum",
+            "topic": "Optimization",
+            "bullets": [
+                "is a variant of SGD that accumulates an exponential moving average of past gradients",
+                "has a momentum coefficient that controls how much of the previous update direction is retained",
+                "helps smooth out noisy gradient directions and accelerates learning along consistent slopes",
+                "can reduce oscillations in narrow valleys of the loss landscape",
+                "often converges faster and more stably than vanilla SGD with the same learning rate"
+            ]
+        },
+        {
+            "name": "Adam Optimizer",
+            "topic": "Optimization",
+            "bullets": [
+                "is an adaptive optimization algorithm that maintains moving averages of both gradients and squared gradients",
+                "has hyperparameters beta1 and beta2 that control the decay rates of the first and second moment estimates",
+                "scales each parameter’s update by an estimate of its past gradient magnitude, resulting in per-parameter learning rates",
+                "often converges faster than SGD in practice, especially for complex models and sparse gradients",
+                "includes an epsilon term to improve numerical stability when dividing by small values",
+                "is widely used for training transformers, CNNs, and many modern deep learning architectures"
+            ]
+        },
+        {
+            "name": "Learning Rate",
+            "topic": "Optimization",
+            "bullets": [
+                "is a key hyperparameter that determines the magnitude of each parameter update step",
+                "has to be chosen carefully because too large values can cause divergence and NaNs",
+                "causes very slow convergence or training stagnation if set too small",
+                "often benefits from scheduling strategies that reduce it over time as training progresses",
+                "can be tuned using heuristics, cyclic policies, or learning rate range tests"
+            ]
+        },
+        {
+            "name": "Learning Rate Schedule",
+            "topic": "Optimization",
+            "bullets": [
+                "is a predefined or adaptive rule that changes the learning rate across training steps or epochs",
+                "has common forms such as step decay, exponential decay, cosine annealing, and cyclic schedules",
+                "helps the optimizer take larger steps early in training and smaller, more precise steps later",
+                "can improve both convergence speed and final generalization performance",
+                "is often combined with warm-up phases in very deep networks or transformers"
+            ]
+        },
+        {
+            "name": "Cosine Annealing Schedule",
+            "topic": "Optimization",
+            "bullets": [
+                "is a learning rate schedule where the learning rate follows a cosine-shaped decay curve over a training period",
+                "starts from a maximum learning rate and gradually decreases it towards a minimum value following a smooth cosine function",
+                "can optionally be combined with restarts to cycle between high and low learning rates",
+                "aims to encourage exploration early on and fine-tuning near the end of training",
+                "is frequently used in modern training pipelines for both CNNs and transformers"
+            ]
+        },
+        {
+            "name": "Learning Rate Warm-up",
+            "topic": "Optimization",
+            "bullets": [
+                "is a strategy that starts training with a smaller learning rate and gradually increases it to a target value over several steps or epochs",
+                "helps stabilize early training when gradients and activations can be unstable",
+                "is particularly important for very deep or large-batch models such as transformers and large CNNs",
+                "can prevent divergence that would occur if using the full learning rate from the first iteration",
+                "is usually followed by a decay schedule once the warm-up phase finishes"
+            ]
+        },
+        {
+            "name": "Batch Size",
+            "topic": "Optimization",
+            "bullets": [
+                "is the number of samples used to compute one gradient update in mini-batch training",
+                "affects the noise level of the gradient estimate, with smaller batches producing noisier gradients",
+                "impacts memory usage on hardware accelerators because larger batches require more VRAM",
+                "can influence generalization, where very large batches may sometimes lead to poorer test performance",
+                "is often chosen as a compromise between stability, generalization, and computational efficiency"
+            ]
+        },
+        {
+            "name": "Overfitting",
+            "topic": "Optimization / Generalization",
+            "bullets": [
+                "is a phenomenon where a model fits the training data very well but fails to generalize to unseen data",
+                "often manifests as decreasing training loss with increasing validation loss after some point",
+                "is more likely when the model has high capacity relative to the amount of training data",
+                "can be mitigated with regularization techniques such as dropout, weight decay, and data augmentation",
+                "can also be addressed by early stopping when validation performance stops improving"
+            ]
+        },
+        {
+            "name": "Underfitting",
+            "topic": "Optimization / Generalization",
+            "bullets": [
+                "occurs when a model is too simple or poorly trained to capture the underlying patterns in the data",
+                "is typically characterized by high training loss and poor performance on both training and validation sets",
+                "can be caused by insufficient training time, inadequate model capacity, or excessively strong regularization",
+                "can be mitigated by increasing model complexity, training longer, or relaxing regularization constraints",
+                "signals that the model has not yet reached its optimal representational potential"
+            ]
+        },
+        {
+            "name": "Gradient Clipping",
+            "topic": "Optimization",
+            "bullets": [
+                "is a technique that limits the magnitude of gradients during backpropagation",
+                "is commonly implemented by scaling gradients when their norm exceeds a chosen threshold",
+                "helps prevent exploding gradients that can destabilize training and produce NaN values",
+                "is especially useful in very deep networks and recurrent architectures",
+                "allows the optimizer to maintain stable updates even when encountering large error signals"
+            ]
+        },
+        {
+            "name": "Weight Decay (L2 Regularization)",
+            "topic": "Optimization / Regularization",
+            "bullets": [
+                "is a regularization method that penalizes large weights by adding their squared magnitude to the loss function",
+                "is often implemented in SGD as subtracting a small fraction of the current weight value at each update step",
+                "encourages simpler models by shrinking parameters toward zero over time",
+                "helps reduce overfitting by discouraging overly complex parameter configurations",
+                "is commonly used together with SGD or Adam to improve generalization"
+            ]
+        },
+        {
+            "name": "Cross-Entropy Loss (Categorical)",
+            "topic": "Loss Functions",
+            "bullets": [
+                "is a loss function used for multi-class classification where each example belongs to exactly one class",
+                "measures the distance between the predicted probability distribution and the one-hot ground-truth distribution",
+                "is minimized when the model assigns high probability to the correct class and low probability to others",
+                "is typically used with a Softmax output layer in single-label classification problems",
+                "can be extended to class-weighted versions when handling class imbalance"
+            ]
+        },
+        {
+            "name": "Binary Cross-Entropy Loss",
+            "topic": "Loss Functions",
+            "bullets": [
+                "is a loss function used for binary classification or independent multi-label classification tasks",
+                "is defined per output as -[y * log(y_hat) + (1 - y) * log(1 - y_hat)] where y_hat is a predicted probability",
+                "is often applied with a Sigmoid activation for each output unit",
+                "treats each label as an independent binary decision in multi-label classification",
+                "can be adapted with positive or negative class weighting to handle imbalance"
+            ]
+        },
+        {
+            "name": "Mean Squared Error (MSE)",
+            "topic": "Loss Functions",
+            "bullets": [
+                "is a regression loss that computes the average of squared differences between predictions and targets",
+                "penalizes larger errors more heavily because the error term is squared",
+                "is sensitive to outliers since large deviations contribute disproportionately to the loss",
+                "is commonly used when predicting continuous quantities such as coordinates or intensities",
+                "has a smooth gradient that encourages predictions to move toward the mean of the targets"
+            ]
+        },
+        {
+            "name": "Mean Absolute Error (MAE / L1 Loss)",
+            "topic": "Loss Functions",
+            "bullets": [
+                "is a regression loss that computes the average of absolute differences between predictions and targets",
+                "penalizes all errors linearly, making it more robust to outliers than MSE",
+                "has gradients that are constant in magnitude away from zero error",
+                "can lead to median-like behavior where the model predicts median values of the target distribution",
+                "is sometimes combined with MSE in composite losses to balance robustness and smoothness"
+            ]
+        },
+        {
+            "name": "Hinge Loss",
+            "topic": "Loss Functions",
+            "bullets": [
+                "is a margin-based loss commonly used with linear classifiers like SVMs",
+                "is defined as max(0, 1 - y * y_hat) where y is a label in {-1, 1} and y_hat is the raw score",
+                "penalizes predictions that are on the wrong side of the decision boundary or too close to it",
+                "encourages a large margin between positive and negative examples",
+                "is less common in modern deep networks than cross-entropy but still useful in some margin-based setups"
+            ]
+        },
+        {
+            "name": "Dice Loss / IoU-based Losses (context)",
+            "topic": "Loss Functions for Segmentation",
+            "bullets": [
+                "are overlap-based losses designed for segmentation tasks with imbalanced foreground and background",
+                "measure similarity between predicted and ground-truth masks using set overlap rather than per-pixel averages",
+                "are more robust than plain cross-entropy when the positive class occupies a small fraction of the image",
+                "can be combined with cross-entropy to balance region overlap and per-pixel classification quality",
+                "are commonly used in medical imaging and other domains with small structures"
+            ]
+        },
+        {
+            "name": "Class Imbalance in Loss Functions",
+            "topic": "Loss Functions",
+            "bullets": [
+                "refers to situations where some classes have far fewer training examples or pixels than others",
+                "can cause standard cross-entropy to bias predictions toward the majority class",
+                "is often addressed by using class weights, focal loss, or overlap-based losses",
+                "requires careful evaluation using metrics like Precision, Recall, and IoU rather than Accuracy alone"
+            ]
+        },
+        {
+            "name": "Precision",
+            "topic": "Evaluation Metrics",
+            "bullets": [
+                "is an evaluation metric that measures how many predicted positives are actually correct",
+                "is defined as True Positives divided by (True Positives + False Positives)",
+                "is high when the model makes few false positive errors",
+                "is important in applications where false alarms are costly, such as medical diagnosis or detection of rare events",
+                "complements Recall by focusing on prediction quality among positive predictions"
+            ]
+        },
+        {
+            "name": "Recall",
+            "topic": "Evaluation Metrics",
+            "bullets": [
+                "is an evaluation metric that measures how many actual positives are successfully detected by the model",
+                "is defined as True Positives divided by (True Positives + False Negatives)",
+                "is high when the model misses few true positive instances",
+                "is important in applications where missing a positive instance is very costly, such as safety-critical detection",
+                "often trades off with Precision depending on the chosen decision threshold"
+            ]
+        },
+        {
+            "name": "F1-Score",
+            "topic": "Evaluation Metrics",
+            "bullets": [
+                "is the harmonic mean of Precision and Recall",
+                "is defined as 2 * (Precision * Recall) / (Precision + Recall)",
+                "provides a single number that balances both false positives and false negatives",
+                "is especially useful on imbalanced datasets where Accuracy can be misleading",
+                "can be computed per class or as a macro/micro average across classes"
+            ]
+        },
+        {
+            "name": "Accuracy",
+            "topic": "Evaluation Metrics",
+            "bullets": [
+                "is a metric that measures the fraction of correctly classified samples out of all samples",
+                "is defined as (True Positives + True Negatives) divided by the total number of samples",
+                "can be misleading in highly imbalanced datasets where the majority class dominates",
+                "is appropriate when all classes are balanced and errors have similar costs",
+                "is often reported together with more informative metrics like Precision, Recall, and F1"
+            ]
+        },
+        {
+            "name": "Intersection over Union (IoU)",
+            "topic": "Evaluation Metrics for Detection/Segmentation",
+            "bullets": [
+                "is a metric that quantifies the overlap between a predicted region (box or mask) and the ground-truth region",
+                "is computed as the area of intersection divided by the area of union between prediction and ground truth",
+                "ranges from 0 (no overlap) to 1 (perfect overlap)",
+                "is used as a threshold criterion to decide if a predicted box is a True Positive in detection",
+                "is also used directly as a score for segmentation mask quality"
+            ]
+        },
+        {
+            "name": "Average Precision (AP)",
+            "topic": "Evaluation Metrics for Detection",
+            "bullets": [
+                "is a detection metric that summarizes the Precision-Recall curve for a single class",
+                "is computed as the area under the Precision-Recall curve, often after applying precision smoothing",
+                "depends on a chosen IoU threshold that defines True Positives",
+                "is sensitive to both localization quality and ranking of detections by confidence",
+                "provides a more detailed view than a single Precision or Recall value at one threshold"
+            ]
+        },
+        {
+            "name": "mean Average Precision (mAP)",
+            "topic": "Evaluation Metrics for Detection",
+            "bullets": [
+                "is the mean of Average Precision values computed across multiple classes and sometimes across multiple IoU thresholds",
+                "is a standard benchmark metric on datasets like COCO and PASCAL VOC",
+                "captures both classification and localization performance in detection tasks",
+                "encourages models to rank correct detections ahead of incorrect ones across the entire dataset",
+                "is often reported at specific IoU values (e.g., mAP@0.5) or averaged over a range (e.g., mAP@[0.5:0.95])"
+            ]
+        },
+        {
+            "name": "Self-Attention",
+            "topic": "Transformers",
+            "bullets": [
+                "is a mechanism where each token in a sequence attends to all other tokens to gather contextual information",
+                "uses query, key, and value vectors derived from the same input embeddings",
+                "computes attention weights from similarities between queries and keys, then applies them to values",
+                "captures long-range dependencies without relying on recurrence or fixed convolutional receptive fields",
+                "is the core building block of transformer architectures for NLP and vision"
+            ]
+        },
+        {
+            "name": "Multi-Head Attention",
+            "topic": "Transformers",
+            "bullets": [
+                "is an extension of self-attention that uses multiple attention heads in parallel",
+                "projects the input into different subspaces to learn diverse relationships between tokens",
+                "concatenates the outputs of individual heads and applies a final linear projection",
+                "allows the model to jointly attend to information at different positions and representation subspaces",
+                "improves expressiveness compared to single-head attention with similar total dimension"
+            ]
+        },
+        {
+            "name": "Scaled Dot-Product Attention",
+            "topic": "Transformers",
+            "bullets": [
+                "is the standard attention computation used in transformers",
+                "computes attention scores as dot products between queries and keys divided by the square root of the key dimension",
+                "applies a Softmax to obtain normalized attention weights over keys for each query",
+                "uses the scaling factor to prevent overly large dot products that could saturate Softmax",
+                "produces a weighted sum of value vectors as the final contextual representation"
+            ]
+        },
+        {
+            "name": "Positional Encoding",
+            "topic": "Transformers",
+            "bullets": [
+                "is a mechanism to inject information about token order into transformer models",
+                "is needed because pure self-attention is permutation-invariant and does not encode sequence position by itself",
+                "can be implemented as fixed sinusoidal functions or as learnable positional embeddings",
+                "is added to input token embeddings before feeding them into transformer layers",
+                "allows the model to distinguish between different positions in a sequence or spatial grid"
+            ]
+        },
+        {
+            "name": "Transformer Encoder",
+            "topic": "Transformers",
+            "bullets": [
+                "is a stack of layers each containing multi-head self-attention and position-wise feed-forward sublayers",
+                "uses residual connections and normalization around each sublayer",
+                "processes the entire input sequence in parallel to produce contextualized token representations",
+                "typically employs bidirectional attention where tokens can attend to both past and future positions",
+                "is used in models like BERT and Vision Transformers for understanding tasks"
+            ]
+        },
+        {
+            "name": "Transformer Decoder",
+            "topic": "Transformers",
+            "bullets": [
+                "is a stack of layers that contain masked self-attention, encoder-decoder cross-attention, and feed-forward sublayers",
+                "uses causal masking in self-attention so that each position can only attend to previous positions in the output sequence",
+                "includes cross-attention to attend over encoder outputs when used in sequence-to-sequence tasks",
+                "is used in models like GPT (decoder-only) and the decoder part of the original transformer for generation tasks",
+                "supports autoregressive generation by predicting one token at a time conditioned on previous outputs"
+            ]
+        },
+        {
+            "name": "Vision Transformer (ViT)",
+            "topic": "Transformers for Vision",
+            "bullets": [
+                "is a model that applies the transformer encoder architecture directly to image patches",
+                "splits an image into fixed-size non-overlapping patches and flattens them into vectors",
+                "projects each patch vector into an embedding space and adds positional encodings",
+                "prepends a special class token whose final representation is used for classification",
+                "relies on large-scale pretraining and data augmentation to achieve strong performance on vision tasks"
+            ]
+        },
+        {
+            "name": "Semantic Segmentation",
+            "topic": "Segmentation",
+            "bullets": [
+                "is a pixel-level prediction task where each pixel is assigned a semantic class label",
+                "does not distinguish between different instances of the same class, treating them as one category",
+                "produces dense label maps with the same spatial resolution as the input (or upsampled to it)",
+                "is used in applications like road scene understanding and medical imaging",
+                "is often modeled with fully convolutional networks and encoder-decoder architectures"
+            ]
+        },
+        {
+            "name": "Instance Segmentation",
+            "topic": "Segmentation",
+            "bullets": [
+                "is a task that assigns both a class label and a unique instance identity to each object pixel",
+                "separates different objects of the same class into distinct masks",
+                "combines aspects of detection (instances) and segmentation (pixel-level regions)",
+                "is more complex than semantic segmentation because it must handle object counting and separation",
+                "is commonly addressed by models like Mask R-CNN and related architectures"
+            ]
+        },
+        {
+            "name": "Panoptic Segmentation",
+            "topic": "Segmentation",
+            "bullets": [
+                "is a unified segmentation task that combines semantic segmentation of stuff (background regions) with instance segmentation of things (object instances)",
+                "assigns every pixel a semantic label and, for instances, an associated instance ID",
+                "requires consistent handling of both amorphous regions like sky and countable objects like cars",
+                "provides a holistic scene understanding in a single output representation",
+                "is evaluated with specialized metrics that account for both semantic and instance quality"
+            ]
+        },
+        {
+            "name": "Fully Convolutional Network (FCN)",
+            "topic": "Segmentation",
+            "bullets": [
+                "is a network that replaces fully connected layers with convolutions to produce spatially dense outputs",
+                "can take input images of arbitrary size and produce correspondingly sized output maps",
+                "typically upsamples coarse feature maps using deconvolution or interpolation to match input resolution",
+                "was one of the first architectures to adapt classification CNNs for segmentation tasks",
+                "serves as a base idea for many later encoder-decoder segmentation models"
+            ]
+        },
+        {
+            "name": "U-Net",
+            "topic": "Segmentation",
+            "bullets": [
+                "is an encoder-decoder segmentation architecture with symmetric contracting and expanding paths",
+                "uses skip connections between encoder and decoder layers at corresponding spatial resolutions",
+                "preserves fine-grained spatial information by concatenating encoder features into decoder stages",
+                "was originally proposed for biomedical segmentation but is widely used in many domains",
+                "achieves accurate localization with relatively few training images"
+            ]
+        },
+        {
+            "name": "DeepLab",
+            "topic": "Segmentation",
+            "bullets": [
+                "is a family of segmentation models that leverage atrous (dilated) convolutions to control receptive field sizes",
+                "uses Atrous Spatial Pyramid Pooling (ASPP) to capture multi-scale context with parallel dilated convolutions",
+                "often incorporates strong backbones like ResNet or Xception",
+                "balances detailed boundary localization with large-context understanding",
+                "has variants such as DeepLabv2, DeepLabv3, and DeepLabv3+ with progressively improved designs"
+            ]
+        },
+        {
+            "name": "Two-Stage Object Detectors",
+            "topic": "Object Detection",
+            "bullets": [
+                "are detectors that first generate candidate regions and then classify and refine them in a second stage",
+                "use region proposal mechanisms such as Region Proposal Networks (RPN) in Faster R-CNN",
+                "tend to achieve high accuracy but can be slower than one-stage methods",
+                "allow more complex processing per region, including mask prediction in extensions like Mask R-CNN",
+                "separate localization and classification steps conceptually"
+            ]
+        },
+        {
+            "name": "One-Stage Object Detectors",
+            "topic": "Object Detection",
+            "bullets": [
+                "are detectors that directly predict class probabilities and bounding box offsets in a single pass over the image",
+                "include models like YOLO and SSD that are optimized for speed",
+                "treat detection as a dense prediction problem over a set of predefined anchor boxes or grid cells",
+                "are well-suited for real-time applications where latency is critical",
+                "have evolved through multiple versions to narrow the accuracy gap to two-stage methods"
+            ]
+        },
+        {
+            "name": "YOLO (You Only Look Once)",
+            "topic": "Object Detection",
+            "bullets": [
+                "is a family of one-stage object detectors designed for real-time performance",
+                "divides the image into grid cells that each predict bounding boxes and class scores",
+                "performs detection in a single forward pass without a separate proposal stage",
+                "balances speed and accuracy through architecture and anchor design choices",
+                "has multiple versions (e.g., YOLOv3, YOLOv5, YOLOv8) with progressively improved backbones and heads"
+            ]
+        },
+        {
+            "name": "SSD (Single Shot MultiBox Detector)",
+            "topic": "Object Detection",
+            "bullets": [
+                "is a one-stage detector that predicts class scores and box offsets for a set of default boxes at multiple feature map scales",
+                "places anchor boxes of different aspect ratios at each location on several feature maps",
+                "handles objects of various sizes by using both high-resolution and low-resolution feature maps",
+                "offers a good trade-off between speed and accuracy for many detection tasks",
+                "uses hard negative mining in training to balance positive and negative examples"
+            ]
+        },
+        {
+            "name": "Anchor Boxes",
+            "topic": "Object Detection",
+            "bullets": [
+                "are predefined bounding boxes with fixed scales and aspect ratios placed at specific positions on feature maps",
+                "serve as reference shapes that detectors can adjust via predicted offsets to match ground-truth boxes",
+                "allow the network to handle objects of varying sizes and shapes with a limited set of templates",
+                "are assigned to ground-truth boxes based on IoU thresholds during training",
+                "influence detection performance and must be chosen carefully for each dataset"
+            ]
+        },
+        {
+            "name": "Non-Maximum Suppression (NMS)",
+            "topic": "Object Detection",
+            "bullets": [
+                "is a post-processing algorithm that removes redundant, overlapping detections",
+                "keeps the highest-confidence box for each object and suppresses boxes with high IoU overlap with it",
+                "reduces multiple detections of the same object down to a single bounding box",
+                "uses IoU thresholds to decide which boxes to suppress",
+                "is essential for obtaining clean final detection outputs from dense predictions"
+            ]
+        },
+        {
+            "name": "Saliency Maps",
+            "topic": "Visualization / Interpretability",
+            "bullets": [
+                "are gradient-based visualizations that show how sensitive a model’s output is to each input pixel",
+                "compute derivatives of the class score with respect to input pixels to form a saliency value",
+                "highlight regions where small changes in pixel values most affect the output",
+                "can be noisy and high-frequency but provide fine-grained importance information",
+                "help interpret what parts of the image drive a particular prediction"
+            ]
+        },
+        {
+            "name": "Grad-CAM",
+            "topic": "Visualization / Interpretability",
+            "bullets": [
+                "is a class-discriminative localization technique for visualizing deep network decisions",
+                "uses gradients of a target class score with respect to feature maps in a convolutional layer",
+                "aggregates gradients to compute importance weights for each channel in the feature maps",
+                "produces a coarse heatmap over the spatial dimensions of the chosen feature maps",
+                "upsamples the heatmap to input resolution and overlays it on the image for inspection"
+            ]
+        },
+        {
+            "name": "Self-Supervised Learning (SSL)",
+            "topic": "Self-Supervised Learning",
+            "bullets": [
+                "is a paradigm where models learn useful representations from unlabeled data using automatically generated supervisory signals",
+                "defines pretext tasks that do not require manual annotation, such as predicting rotations or solving patch order",
+                "aims to produce embeddings that transfer well to downstream supervised tasks with limited labeled data",
+                "can significantly reduce the need for large labeled datasets in practice",
+                "is widely used in both vision and language domains for pretraining encoders"
+            ]
+        },
+        {
+            "name": "Contrastive Learning",
+            "topic": "Self-Supervised Learning",
+            "bullets": [
+                "is an SSL approach that trains models to bring representations of related samples closer and push unrelated ones apart",
+                "uses positive pairs such as two augmented views of the same image and negative pairs from other images",
+                "often employs a contrastive loss like InfoNCE over large batches or memory banks",
+                "encourages the encoder to capture invariant features that are stable under augmentations",
+                "underlies methods like SimCLR, MoCo, and related contrastive frameworks"
+            ]
+        },
+        {
+            "name": "Masked Prediction / Masked Autoencoders",
+            "topic": "Self-Supervised Learning",
+            "bullets": [
+                "are SSL methods that mask out parts of the input and train the model to reconstruct the missing content",
+                "apply heavy masking to image patches or tokens to force the encoder to understand global structure",
+                "often use a lightweight decoder that reconstructs pixels or features from encoded visible tokens",
+                "have been particularly successful with transformer-based vision models like MAE",
+                "learn representations that capture high-level semantics from reconstruction signals"
+            ]
+        },
+        {
+            "name": "Multimodal Learning",
+            "topic": "Multimodal",
+            "bullets": [
+                "is the learning paradigm that integrates information from multiple modalities such as text, images, audio, and video",
+                "aims to learn joint representations that capture relationships across modalities",
+                "enables tasks like image-caption retrieval, visual question answering, and cross-modal retrieval",
+                "often uses encoders for each modality followed by fusion or alignment mechanisms",
+                "benefits from large-scale paired datasets such as image-text pairs"
+            ]
+        },
+        {
+            "name": "CLIP",
+            "topic": "Multimodal",
+            "bullets": [
+                "is a model that learns joint image and text embeddings using contrastive pretraining on large-scale image-text pairs",
+                "uses separate encoders for images and text that map inputs into a shared embedding space",
+                "trains with a contrastive loss to maximize similarity of matching pairs and minimize similarity of mismatched pairs",
+                "enables zero-shot classification by comparing image embeddings with embeddings of textual class descriptions",
+                "demonstrates strong transfer capabilities across many vision tasks without task-specific training"
+            ]
+        },
+        {
+            "name": "Cross-Modal Attention",
+            "topic": "Multimodal",
+            "bullets": [
+                "is an attention mechanism where queries from one modality attend to keys and values from another modality",
+                "enables a model to selectively focus on relevant regions in an image given a text query, or vice versa",
+                "is used in architectures for tasks like visual question answering and image captioning",
+                "generalizes the encoder-decoder cross-attention pattern to heterogeneous inputs",
+                "helps fuse information across different sensory streams in a structured way"
+            ]
+        },
+        {
+            "name": "Tensor Shape Conventions (Vision)",
+            "topic": "Tensor Operations",
+            "bullets": [
+                "refer to the standard ordering of dimensions in vision models, commonly [N, C, H, W] in PyTorch",
+                "use N for batch size, C for number of channels, H for height, and W for width",
+                "are crucial to understand when applying operations like convolutions, pooling, and normalization",
+                "must be handled carefully when reshaping, permuting, or flattening tensors",
+                "can differ between frameworks (e.g., some use [N, H, W, C]) requiring explicit conversion"
+            ]
+        },
+        {
+            "name": "Broadcasting (PyTorch / NumPy)",
+            "topic": "Tensor Operations",
+            "bullets": [
+                "is a set of rules that allow operations on tensors of different shapes by automatically expanding dimensions",
+                "compares shapes from right to left and treats missing or singleton dimensions as broadcastable",
+                "avoids explicit replication of data in memory by reusing values along broadcasted dimensions",
+                "is heavily used in elementwise operations, normalization, and loss computations",
+                "can cause subtle bugs if shapes are not carefully checked before operations"
+            ]
+        },
+        {
+            "name": "view / reshape",
+            "topic": "Tensor Operations",
+            "bullets": [
+                "are operations that change the shape of a tensor without changing its underlying data when possible",
+                "require that the total number of elements remain the same before and after the reshape",
+                "are often used to flatten convolutional feature maps into vectors before fully connected layers",
+                "can fail if the tensor is not contiguous in memory, in which case a contiguous copy may be required",
+                "must be used carefully to avoid unintentionally mixing batch and feature dimensions"
+            ]
+        },
+        {
+            "name": "unsqueeze / squeeze",
+            "topic": "Tensor Operations",
+            "bullets": [
+                "are operations that add or remove singleton dimensions (dimensions of size 1)",
+                "unsqueeze inserts a new dimension of size 1 at a specified position in the tensor shape",
+                "squeeze removes dimensions of size 1, either all of them or at a specified index",
+                "are useful for aligning tensor shapes for broadcasting or feeding into layers expecting certain ranks",
+                "do not change the underlying data, only the view of the tensor's shape"
+            ]
+        },
+        {
+            "name": "Softmax along dimension",
+            "topic": "Tensor Operations",
+            "bullets": [
+                "is an operation that converts raw scores into probabilities along a specified axis",
+                "normalizes values so that they are non-negative and sum to 1 along that dimension",
+                "is typically applied along the class dimension in classification logits",
+                "is sensitive to large magnitude inputs and is often combined with stability tricks like subtracting the max",
+                "plays a role in attention mechanisms where it is applied over similarity scores"
+            ]
+        },
+        {
+            "name": "numel / size in PyTorch",
+            "topic": "Tensor Operations",
+            "bullets": [
+                "numel returns the total number of elements in a tensor across all dimensions",
+                "size or shape returns the length of each dimension individually",
+                "are essential for verifying shapes before reshaping or for computing parameter counts",
+                "help debug broadcasting and dimension mismatch errors in model code"
+            ]
+        },
+        {
+            "name": "Depthwise Convolution",
+            "topic": "Convolution Variants",
+            "bullets": [
+                "is a convolution operation where each input channel is convolved with its own separate spatial filter",
+                "reduces computation by removing cross-channel mixing within the spatial convolution step",
+                "produces an output with the same number of channels as the input when using one filter per channel",
+                "is typically followed by a separate pointwise (1x1) convolution to mix information across channels",
+                "is a key building block in depthwise separable convolutions used by MobileNet-like architectures"
+            ]
+        },
+        {
+            "name": "Pointwise Convolution (1x1 Conv)",
+            "topic": "Convolution Variants",
+            "bullets": [
+                "is a convolution with kernel size 1x1 that operates independently at each spatial location",
+                "mixes information across channels without changing spatial dimensions",
+                "is often used for dimensionality reduction or expansion in CNNs",
+                "acts as the second stage in depthwise separable convolutions to combine depthwise outputs",
+                "can significantly reduce parameter count when combined with depthwise convolutions"
+            ]
+        },
+        {
+            "name": "Depthwise Separable Convolution",
+            "topic": "Convolution Variants",
+            "bullets": [
+                "is a factorized convolution consisting of a depthwise convolution followed by a pointwise (1x1) convolution",
+                "reduces computational cost compared to standard convolutions by separating spatial filtering and channel mixing",
+                "is heavily used in lightweight architectures like MobileNet to enable efficient inference on mobile devices",
+                "maintains good representational power while using far fewer parameters than equivalent standard convolutions",
+                "forms the core design element of many efficient CNN backbones"
+            ]
+        },
+        {
+            "name": "Atrous (Dilated) Convolution",
+            "topic": "Convolution Variants",
+            "bullets": [
+                "is a convolution that inserts gaps (dilations) between kernel elements to enlarge the receptive field",
+                "allows the network to capture larger context without increasing the number of parameters",
+                "controls the spacing of sampled input positions via a dilation rate hyperparameter",
+                "is widely used in segmentation models like DeepLab to balance resolution and context",
+                "can be combined at multiple dilation rates to form Atrous Spatial Pyramid Pooling"
+            ]
+        },
+        {
+            "name": "Atrous Spatial Pyramid Pooling (ASPP)",
+            "topic": "Segmentation / DeepLab",
+            "bullets": [
+                "is a module that applies multiple parallel atrous convolutions with different dilation rates to the same feature map",
+                "captures multi-scale context by aggregating features at several receptive field sizes",
+                "often includes an image-level pooling branch to incorporate global context",
+                "concatenates the outputs of all branches and fuses them with a 1x1 convolution",
+                "is a central component of DeepLab models that improves segmentation accuracy on complex scenes"
+            ]
+        },
+        {
+            "name": "PyTorch Tensor",
+            "topic": "PyTorch / NumPy Tensors",
+            "bullets": [
+                "is the core multi-dimensional array structure used to represent data and model parameters in PyTorch",
+                "stores data with a shape, dtype (such as float32), and device (CPU or GPU)",
+                "supports automatic differentiation when requires_grad is True, enabling backpropagation through computation graphs",
+                "typically uses the [N, C, H, W] layout for image data in vision models",
+                "can be reshaped, permuted, and broadcasted using tensor operations like view, permute, and unsqueeze",
+                "shares many conceptual similarities with NumPy arrays but integrates tightly with GPU acceleration and autograd"
+            ]
+        },
+        {
+            "name": "NumPy Array",
+            "topic": "PyTorch / NumPy Tensors",
+            "bullets": [
+                "is a fundamental n-dimensional array type provided by the NumPy library in Python",
+                "stores data in contiguous memory with a shape and dtype, supporting vectorized operations",
+                "does not natively track gradients or support automatic differentiation",
+                "is often used in pre-processing, evaluation scripts, and lab utilities around deep learning models",
+                "shares broadcasting and indexing semantics that are conceptually mirrored in PyTorch tensors",
+                "can be converted to PyTorch tensors and back when coordinating between numeric code and deep learning code"
+            ]
+        },
+        {
+            "name": "Paired Geometric Augmentations for Segmentation",
+            "topic": "Laboratories / Data Augmentation",
+            "bullets": [
+                "are augmentation operations that apply the exact same random geometric transform to both the input image and its segmentation mask",
+                "include operations such as random horizontal flips, rotations, and crops applied in a synchronized fashion",
+                "are necessary to maintain spatial alignment between the image content and pixel-level labels",
+                "prevent supervision from becoming corrupted by misaligned labels during training",
+                "are typically implemented by generating random transform parameters once and using them for both image and mask"
+            ]
+        },
+        {
+            "name": "Precision Envelope Correction for AP",
+            "topic": "Laboratories / Average Precision",
+            "bullets": [
+                "is a post-processing step applied to the precision-recall curve before computing Average Precision",
+                "enforces that precision values become a monotonically non-increasing function of recall from left to right",
+                "is implemented by scanning precision values from the highest recall backward and replacing each value with the maximum of itself and all following values",
+                "smooths out small local dips in precision caused by ranking noise or limited sample statistics",
+                "leads to a more stable and standardized AP metric consistent with common detection benchmarks"
+            ]
+        },
+        {
+            "name": "One-to-One Ground Truth Matching for AP",
+            "topic": "Laboratories / Average Precision",
+            "bullets": [
+                "is a rule that each ground-truth object can be matched to at most one predicted bounding box when computing detection metrics",
+                "ensures that multiple high-overlap detections for the same object do not yield multiple True Positives",
+                "prevents artificial inflation of precision and recall by duplicate detections",
+                "is typically implemented by assigning predictions to ground truths greedily in descending order of confidence and IoU",
+                "is crucial for fair and consistent evaluation of object detectors"
+            ]
+        },
+        {
+            "name": "Attention Matrix Interpretation",
+            "topic": "Laboratories / Self-Attention",
+            "bullets": [
+                "refers to how the entries of the self-attention matrix A with shape [B, T, T] should be interpreted",
+                "represents for each sample b and each query token i the distribution of attention weights over all key tokens j",
+                "assigns A[b, i, j] as the relative importance that token i places on token j when aggregating contextual information",
+                "ensures that rows of the attention matrix sum to 1 after Softmax along the key dimension",
+                "provides a way to visualize which tokens attend to which other tokens in a sequence or image patch grid"
+            ]
+        },
+        {
+            "name": "Linear Classifier Weight Visualization",
+            "topic": "Laboratories / Interpretability",
+            "bullets": [
+                "is a technique where rows of a linear classifier weight matrix are reshaped into image shapes and visualized",
+                "shows each class weight vector as a spatial template that scores similarity with input images via a dot product",
+                "highlights that a linear classifier effectively matches inputs against learned class-specific patterns",
+                "provides intuition about which regions and colors contribute positively or negatively to each class score",
+                "is particularly illustrative when applied to small images like CIFAR-10"
+            ]
+        },
+        {
+            "name": "NumPy Slicing Views vs Copies",
+            "topic": "Laboratories / NumPy Internals",
+            "bullets": [
+                "distinguishes between array views that share memory with the original array and copies that own separate memory",
+                "notes that basic slicing (using : and ranges) typically returns a view sharing underlying memory",
+                "implies that modifying a slice that is a view also changes the corresponding elements in the original array",
+                "requires care when writing code to avoid unintentional side effects from shared memory",
+                "can be controlled by explicitly calling copy() when an independent array is needed"
+            ]
+        },
+        {
+            "name": "NumPy Reduction Operations (axis argument)",
+            "topic": "Laboratories / NumPy Operations",
+            "bullets": [
+                "refer to operations like sum, mean, and max that aggregate values along specified axes",
+                "use the axis argument to determine which dimension is reduced while keeping others intact",
+                "produce outputs whose shape has the reduced axes removed or set to size 1 depending on keepdims",
+                "are essential for implementing metrics and losses that operate along batch, spatial, or channel dimensions",
+                "mirror similar reduction functions used in PyTorch tensor operations"
+            ]
+        }
+    ]
+}

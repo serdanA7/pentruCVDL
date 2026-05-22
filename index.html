@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CVDL Study — Q&A Explorer</title>
-  <meta name="description" content="Interactive Computer Vision & Deep Learning Q&A explorer with live search. Filter questions instantly as you type." />
+  <title>CVDL Study — Q&A & Theory Explorer</title>
+  <meta name="description" content="Interactive Computer Vision & Deep Learning Q&A and Theory explorer with live search. Filter instantly as you type." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -23,13 +23,28 @@
         <span class="brand-icon">⚡</span>
         <span class="brand-name">CVDL<span class="brand-accent">Moodle</span></span>
       </div>
-      <div class="header-meta" id="question-count">Loading…</div>
+      <div class="header-meta" id="item-count">Loading…</div>
     </div>
   </header>
 
   <main class="main-content">
+
+    <!-- Tab switcher -->
+    <div class="tab-bar" role="tablist" aria-label="Content mode">
+      <button class="tab-btn active" id="tab-questions" role="tab" aria-selected="true"  aria-controls="panel-questions" data-mode="questions">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Questions
+        <span class="tab-count" id="tab-q-count"></span>
+      </button>
+      <button class="tab-btn" id="tab-theory" role="tab" aria-selected="false" aria-controls="panel-theory"    data-mode="theory">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Theory
+        <span class="tab-count" id="tab-t-count"></span>
+      </button>
+    </div>
+
     <!-- Search Bar -->
-    <section class="search-section" aria-label="Search questions">
+    <section class="search-section" aria-label="Search">
       <div class="search-wrapper">
         <span class="search-icon" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -38,7 +53,7 @@
           type="search"
           id="search-input"
           class="search-input"
-          placeholder="Search questions, topics, answers… (live filter)"
+          placeholder="Search… (live filter)"
           autocomplete="off"
           spellcheck="false"
           aria-label="Live search filter"
@@ -54,13 +69,20 @@
     <!-- Topic filter pills -->
     <section class="filters-section" id="filters-section" aria-label="Filter by topic"></section>
 
-    <!-- Question List -->
-    <section class="questions-section" id="questions-container" aria-label="Questions list">
-      <div class="loading-state" id="loading-state">
-        <div class="spinner"></div>
-        <p>Loading questions…</p>
-      </div>
-    </section>
+    <!-- ── QUESTIONS PANEL ── -->
+    <div id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+      <section class="questions-section" id="questions-container" aria-label="Questions list">
+        <div class="loading-state" id="loading-questions">
+          <div class="spinner"></div>
+          <p>Loading questions…</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── THEORY PANEL ── -->
+    <div id="panel-theory" role="tabpanel" aria-labelledby="tab-theory" hidden>
+      <section class="questions-section" id="theory-container" aria-label="Theory concepts list"></section>
+    </div>
 
     <!-- Empty state -->
     <div class="empty-state" id="empty-state" hidden>
@@ -70,7 +92,7 @@
     </div>
   </main>
 
-  <!-- Answer Modal -->
+  <!-- Answer Modal (questions only) -->
   <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
     <div class="modal" id="modal">
       <button class="modal-close" id="modal-close" aria-label="Close">
