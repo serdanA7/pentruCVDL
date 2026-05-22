@@ -5,9 +5,10 @@
             "topic": "Basic Layers",
             "bullets": [
                 "is a convolutional layer that applies learnable 2D filters (kernels) over spatial dimensions of an input feature map",
-                "has parameters determined by kernel_size, in_channels, out_channels, stride, padding, and optional bias",
+                "has parameter count given by (k_h × k_w × C_in + 1) × C_out when using a bias term, where k_h and k_w are kernel height and width, C_in is input channels, and C_out is output channels",
+                "computes each output feature as y[n, k, i, j] = Σ_c Σ_u Σ_v w[k, c, u, v] · x[n, c, i + u, j + v] + b[k]",
+                "has spatial output size (H_out, W_out) given by H_out = ⌊(H_in + 2·pad_h − k_h) / stride_h⌋ + 1 and W_out = ⌊(W_in + 2·pad_w − k_w) / stride_w⌋ + 1",
                 "has the effect of extracting local patterns such as edges, textures, and shapes by sliding kernels over height and width",
-                "reduces or preserves spatial resolution depending on stride and padding configuration",
                 "shares filter weights across spatial locations, making it more parameter-efficient than fully connected layers for images",
                 "is usually followed by a non-linear activation function and sometimes normalization"
             ]
@@ -17,9 +18,9 @@
             "topic": "Basic Layers",
             "bullets": [
                 "is a downsampling operation that outputs the maximum value within each local window of the input feature map",
-                "has hyperparameters such as kernel_size, stride, and padding that control the size and step of the pooling window",
-                "reduces spatial resolution while keeping the number of channels unchanged",
-                "does not have any learnable parameters because it only applies a fixed max operation",
+                "contains no learnable parameters; it only applies a fixed max operation",
+                "for a window of size k_h × k_w, computes y[n, c, i, j] = max_{0 ≤ u < k_h, 0 ≤ v < k_w} x[n, c, i + u, j + v]",
+                "reduces spatial dimensions H and W while keeping the number of channels C unchanged",
                 "helps achieve translation invariance by making small spatial shifts in the input produce similar outputs",
                 "can act as a form of regularization by discarding less active responses"
             ]
@@ -29,9 +30,9 @@
             "topic": "Basic Layers",
             "bullets": [
                 "is a downsampling operation that outputs the arithmetic mean of values within each local window",
-                "has similar hyperparameters to max pooling (kernel_size, stride, padding)",
-                "reduces spatial resolution without changing the number of channels",
-                "does not learn parameters and only performs a fixed averaging operation",
+                "contains no learnable parameters; it only averages values in each pooling window",
+                "for a window of size k_h × k_w, computes y[n, c, i, j] = (1 / (k_h · k_w)) · Σ_{0 ≤ u < k_h} Σ_{0 ≤ v < k_w} x[n, c, i + u, j + v]",
+                "reduces spatial dimensions H and W without changing the number of channels C",
                 "tends to produce smoother feature maps compared to max pooling because it aggregates all values",
                 "is often used as global average pooling at the end of CNNs to collapse each channel to a single scalar"
             ]
@@ -41,7 +42,9 @@
             "topic": "Basic Layers",
             "bullets": [
                 "is a normalization layer that standardizes activations per mini-batch along specific dimensions",
-                "has learnable gamma (scale) and beta (shift) parameters for each normalized channel",
+                "for C channels, learns 2 × C parameters in total: a scale γ_c and shift β_c for each channel c",
+                "computes batch statistics μ_c = (1/m) · Σ_i x_{i,c} and σ_c^2 = (1/m) · Σ_i (x_{i,c} − μ_c)^2, where m is the number of elements for that channel in the batch",
+                "normalizes activations as x̂_{i,c} = (x_{i,c} − μ_c) / √(σ_c^2 + ε) and then applies y_{i,c} = γ_c · x̂_{i,c} + β_c",
                 "reduces internal covariate shift by stabilizing the distribution of activations during training",
                 "often allows the use of higher learning rates and speeds up convergence",
                 "behaves differently in training and evaluation modes, using batch statistics during training and running estimates during evaluation",
@@ -53,59 +56,23 @@
             "topic": "Basic Layers",
             "bullets": [
                 "is a regularization technique that randomly sets a fraction of activations to zero during training",
-                "has a dropout probability p that controls how many units are dropped on each forward pass",
-                "helps prevent overfitting by discouraging co-adaptation of neurons and promoting redundancy",
+                "contains no learnable parameters; its behavior is controlled only by the dropout probability p",
+                "during training, samples a binary mask m with P(m_i = 0) = p and computes y = (m ⊙ x) / (1 − p) in inverted-dropout implementations",
                 "is disabled in evaluation mode so that all activations pass through without being dropped",
-                "implicitly performs model averaging by simulating many thinned networks during training",
+                "helps prevent overfitting by discouraging co-adaptation of neurons and promoting redundancy",
                 "is typically used in fully connected layers and sometimes in convolutional layers with care"
             ]
         },
         {
-            "name": "ReLU",
+            "name": "Activation Functions (ReLU, Sigmoid, Tanh, GELU)",
             "topic": "Basic Layers",
             "bullets": [
-                "is a piecewise linear activation function defined as max(0, x)",
-                "has the effect of zeroing out negative activations and leaving positive ones unchanged",
-                "introduces non-linearity while being computationally cheap",
-                "can suffer from the \"dying ReLU\" problem where neurons stuck with negative inputs output zero and stop updating",
-                "helps mitigate vanishing gradients compared to saturating activations like sigmoid or tanh",
-                "is widely used in CNNs and MLPs as a default activation choice"
-            ]
-        },
-        {
-            "name": "Sigmoid",
-            "topic": "Basic Layers",
-            "bullets": [
-                "is a smooth activation function that maps real values into the range (0, 1)",
-                "has the form σ(x) = 1 / (1 + exp(-x))",
-                "is commonly used in the output layer of binary or multi-label classification tasks",
-                "can cause vanishing gradients when activations saturate near 0 or 1",
-                "is symmetric around 0.5, not around 0, which can slow down optimization in deep networks",
-                "is usually avoided in deep hidden layers in modern architectures due to gradient issues"
-            ]
-        },
-        {
-            "name": "Tanh",
-            "topic": "Basic Layers",
-            "bullets": [
-                "is a smooth activation function that maps real values into the range (-1, 1)",
-                "has the form tanh(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))",
-                "is zero-centered, which can be advantageous compared to sigmoid in some optimization settings",
-                "still suffers from saturation and vanishing gradients for large positive or negative inputs",
-                "was widely used in older networks and RNNs before ReLU-style activations became dominant",
-                "can be useful in specific architectures where bounded outputs are desired"
-            ]
-        },
-        {
-            "name": "GELU",
-            "topic": "Basic Layers",
-            "bullets": [
-                "is the Gaussian Error Linear Unit activation used in many transformer-based models",
-                "can be written approximately as GELU(x) ≈ 0.5 · x · (1 + tanh(√(2/π) · (x + 0.044715 · x^3)))",
-                "behaves like a smooth, probabilistic version of ReLU that weights inputs by their probability of being positive under a Gaussian",
-                "often improves performance and stability in very deep architectures compared to plain ReLU",
-                "is more computationally expensive than ReLU but is still practical with modern accelerators",
-                "is commonly used together with LayerNorm and residual connections in transformer blocks"
+                "include pointwise non-linearities applied after linear or convolutional layers to increase model capacity",
+                "ReLU is defined as ReLU(x) = max(0, x)",
+                "Sigmoid is defined as σ(x) = 1 / (1 + exp(−x)) and outputs values in (0, 1)",
+                "Tanh is defined as tanh(x) = (exp(x) − exp(−x)) / (exp(x) + exp(−x)) and outputs values in (−1, 1)",
+                "GELU is often approximated as GELU(x) ≈ 0.5 · x · (1 + tanh(√(2/π) · (x + 0.044715 · x^3)))",
+                "are important to recognize both by formula and by typical graph shape for exam questions"
             ]
         },
         {
