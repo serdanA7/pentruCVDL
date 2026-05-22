@@ -735,7 +735,7 @@
                 "for image classification: standard choices are Categorical Cross-Entropy with Softmax for multi-class and Binary Cross-Entropy with Sigmoid for binary or multi-label tasks",
                 "for regression tasks like keypoint prediction or depth estimation: common losses are Mean Squared Error (MSE) and Mean Absolute Error (MAE)"
             ]
-        }
+        },
         {
             "name": "Contrastive Learning",
             "topic": "Self-Supervised Learning",
